@@ -1,0 +1,62 @@
+.services-card-services-card {
+  transition: 0.3s;
+  background-color: #ffffff;
+}
+.services-card-services-card:hover {
+  background-color: #fbc889;
+}
+.services-card-container {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--dl-radius-radius-radius4);
+  margin-bottom: var(--dl-space-space-twounits);
+  justify-content: center;
+  background-color: rgba(182, 71, 47, 0.1);
+}
+.services-card-image {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.services-card-text {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.services-card-text1 {
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+}
+.services-card-text2 {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.services-card-root-class-name {
+  width: 50%;
+  height: auto;
+}
+.services-card-root-class-name1 {
+  width: 50%;
+}
+.services-card-root-class-name2 {
+  width: 50%;
+}
+.services-card-root-class-name3 {
+  width: 50%;
+}
+@media(max-width: 479px) {
+  .services-card-root-class-name {
+    width: 100%;
+  }
+  .services-card-root-class-name1 {
+    width: 100%;
+  }
+  .services-card-root-class-name2 {
+    width: 100%;
+  }
+  .services-card-root-class-name3 {
+    width: 100%;
+  }
+}
