@@ -1149,6 +1149,17 @@
   height: var(--dl-size-size-xsmall);
   text-decoration: none;
 }
+
+.home-learn-more-link {
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s;
+  margin-left: 0px;
+  text-decoration: underline;
+  color: white;
+  margin-bottom: 20px;
+}
+
 @media(max-width: 991px) {
   .home-desktop-menu {
     display: none;

@@ -429,17 +429,20 @@ const Home = (props) => {
             <span className="home-text59">
               Become a partner by finding clients and start earning today.
             </span>
+            <Link to="/partnership" className="home-learn-more-link" >
+              Lean more
+            </Link>
             <a
-              href="mailto:info@targetonline.co.za?subject=Partnership Registration"
+              href="/partner"
               className="home-primary1 button-lg button-secondary-white button"
             >
-              Contact Us
+              Register
             </a>
           </div>
         </div>
         <footer className="home-footer">
           <div className="home-container22">
-            <Link to="/" className="home-navlink08">
+            <Link to="/" className="home-navlink08" >
               <img alt="logo" src="/icon-1500h.png" className="home-image3" />
             </Link>
             <nav className="home-nav1">
