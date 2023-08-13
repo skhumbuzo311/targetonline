@@ -166,7 +166,7 @@
   flex-direction: column;
   background-size: cover;
   justify-content: center;
-  background-image: linear-gradient( #ffffff00, #ffffff ),url(/building.jpg);
+  background-image: linear-gradient( #ffffff00, #ffffff ),url(../assets/building.jpg);
   background-position: center center;
 }
 .software-development-container1 {
@@ -209,7 +209,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  background-image: linear-gradient(#ffffff, #ffffff00),url(/building-upsidedown.jpg);
+  background-image: linear-gradient(#ffffff, #ffffff00),url(../assets/building-upsidedown.jpg);
   background-position: center center;
   background-size: cover;
 

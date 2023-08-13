@@ -73,6 +73,9 @@ const Consulting = (props) => {
               }}>
               Consulting
               </span>
+              <Link to="/partnership" className="home-text01 home-text">
+              Partnership
+              </Link>
               <Link to="/" className="home-text01 home-text">
               Home
               </Link>

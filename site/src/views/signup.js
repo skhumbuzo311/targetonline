@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
 
@@ -56,9 +57,16 @@ const Signup = (props) => {
               Create account
             </button>
             <div className="signup-container5">
-              <span className="signup-text2">Login</span>
+              <Link to="/login" className="signup-navlink">
+                Login
+              </Link>
             </div>
-            <div className="signup-profile">
+            <Link to="/" className="signup-navlink1">
+              <div className="signup-profile">
+                <span className="signup-text2">Home</span>
+              </div>
+            </Link>
+            <div className="signup-profile1">
               <img
                 alt="profile"
                 src="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/0c644282-2675-40e3-b1f6-d5c6c98aaa81/8a36294c-7fa8-440e-8f27-65b41582cf17?org_if_sml=118130"

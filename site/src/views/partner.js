@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-
+import { useState, useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+
+import { CurrentUserContext } from 'store';
 
 import './partner.css'
 
 const Partner = (props) => {
+  const navigate = useNavigate();
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [isSideNavVisible, setSideNavVisible] = useState(false);
+  const [currentUser] = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    if(Object.keys(currentUser).length === 0) navigate('/login')
+  }, [])
+
   return (
     <div className="partner-container">
       <Helmet>
@@ -66,8 +74,8 @@ const Partner = (props) => {
               <Link to="/consulting" className="home-text01 home-text">
               Consulting
               </Link>
-              <Link to="/" className="home-text01 home-text">
-              Home
+              <Link to="/partnership" className="home-text01 home-text">
+              Partnership
               </Link>
             </nav>
             <span className="home-text06" onClick={() => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
 
@@ -38,6 +39,11 @@ const Login = (props) => {
               <span className="login-text3">Reset password </span>
             </div>
             <div className="login-profile">
+              <Link to="/" className="login-navlink">
+                Home
+              </Link>
+            </div>
+            <div className="login-profile1">
               <img
                 alt="profile"
                 src="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/0c644282-2675-40e3-b1f6-d5c6c98aaa81/8a36294c-7fa8-440e-8f27-65b41582cf17?org_if_sml=118130"

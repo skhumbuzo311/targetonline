@@ -1,0 +1,1 @@
+export const noImage = 'https://smartapstorageaccount.blob.core.windows.net/images/no-image.jpg'

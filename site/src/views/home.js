@@ -68,6 +68,9 @@ const Home = (props) => {
                 <Link to="/consulting" className="home-text01 home-text">
                 Consulting
                 </Link>
+                <Link to="/partnership" className="home-text01 home-text">
+                Partnership
+                </Link>
                 <span onClick={() => {
                   setSideNavVisible(false)
                   setCloseBtnClicked(true)
@@ -432,12 +435,9 @@ const Home = (props) => {
             <Link to="/partnership" className="home-learn-more-link" >
               Lean more
             </Link>
-            <a
-              href="/partner"
-              className="home-primary1 button-lg button-secondary-white button"
-            >
-              Register
-            </a>
+            <Link to="/partner" className="home-primary1 button-lg button-secondary-white button" >
+            Register
+            </Link>
           </div>
         </div>
         <footer className="home-footer">

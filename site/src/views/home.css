@@ -227,7 +227,7 @@
   padding-top: 0px;
   padding-bottom: 4px;
   background-size: cover,contain;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.9)),url(/giphy-1500w.gif);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.9)),url(../assets/giphy-1500w.gif);
   background-repeat: no-repeat;
   background-position: center,right;
 }
@@ -1172,7 +1172,7 @@
     width: 100%;
   }
   .home-hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.5)),url(/giphy-1500w.gif);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.5)),url(../assets/giphy-1500w.gif);
   }
   .home-heading-container {
     max-width: 100%;
@@ -1235,7 +1235,7 @@
   }
   */
   .home-hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.5)),url("/giphy-1500w.gif");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.5)),url("../assets/giphy-1500w.gif");
   }
   .home-text07 {
     font-size: 48px;

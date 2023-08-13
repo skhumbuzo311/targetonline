@@ -8,7 +8,7 @@
   flex-direction: column;
 }
 .login-container1 {
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -37,6 +37,7 @@
   justify-content: flex-start;
 }
 .login-text {
+  color: var(--dl-color-scheme-brown);
   width: 100%;
   text-align: center;
 }
@@ -62,18 +63,30 @@
 .login-textinput {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-color: #ffffff;
+}
+.login-textinput:hover {
+  cursor: pointer;
 }
 .login-textinput1 {
   color: #000000;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-color: #ffffff;
+}
+.login-textinput1:hover {
+  cursor: pointer;
 }
 .login-button {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-radius: 10px;
+}
+.login-button:hover {
+  cursor: pointer;
 }
 .login-container5 {
   width: 100%;
@@ -84,13 +97,42 @@
 .login-text2 {
   width: 100%;
   height: 100%;
+  transition: 0.3s;
+}
+.login-text2:hover {
+  color: var(--dl-color-scheme-brown);
+  cursor: pointer;
+  font-weight: bold;
 }
 .login-text3 {
   width: 100%;
   height: 100%;
   text-align: right;
+  transition: 0.3s;
+}
+.login-text3:hover {
+  color: var(--dl-color-scheme-brown);
+  cursor: pointer;
+  font-weight: bold;
 }
 .login-profile {
+  width: 100%;
+  margin-top: 5vh;
+  text-align: center;
+}
+.login-navlink {
+  font-style: normal;
+  transition: 0.3s;
+  font-weight: 600;
+  margin-left: var(--dl-space-space-halfunit);
+  text-decoration: none;
+}
+.login-navlink:hover {
+  color: var(--dl-color-scheme-brown);
+  cursor: pointer;
+  font-weight: bold;
+}
+.login-profile1 {
   display: flex;
   align-self: center;
   margin-top: 5vh;
@@ -108,6 +150,9 @@
   margin-left: var(--dl-space-space-halfunit);
 }
 @media(max-width: 991px) {
+  .login-container1 {
+    width: 100%;
+  }
   .login-text1 {
     font-size: 20px;
   }
@@ -132,6 +177,11 @@
   .login-container3 {
     width: 100%;
     align-self: center;
+  }
+  .login-navlink {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
   }
   .login-text4 {
     font-size: 15px;

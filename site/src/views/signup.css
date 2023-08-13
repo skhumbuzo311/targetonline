@@ -8,7 +8,7 @@
   flex-direction: column;
 }
 .signup-container1 {
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -37,6 +37,7 @@
   justify-content: flex-start;
 }
 .signup-text {
+  color: var(--dl-color-scheme-brown);
   width: 100%;
   text-align: center;
 }
@@ -62,33 +63,57 @@
 .signup-textinput {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-color: #ffffff;
+}
+.signup-textinput:hover {
+  cursor: pointer;
 }
 .signup-textinput1 {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-color: #ffffff;
+}
+.signup-textinput1:hover {
+  cursor: pointer;
 }
 .signup-textinput2 {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-color: #ffffff;
+}
+.signup-textinput2:hover {
+  cursor: pointer;
 }
 .signup-textinput3 {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-color: #ffffff;
+}
+.signup-textinput3:hover {
+  cursor: pointer;
 }
 .signup-textinput4 {
   color: #000000;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-color: #ffffff;
+}
+.signup-textinput4:hover {
+  cursor: pointer;
 }
 .signup-button {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.3s;
   border-radius: 10px;
+}
+.signup-button:hover {
+  cursor: pointer;
 }
 .signup-container5 {
   width: 100%;
@@ -96,12 +121,41 @@
   display: flex;
   align-items: flex-start;
 }
-.signup-text2 {
+.signup-navlink {
   width: 100%;
   height: 100%;
   text-align: center;
+  transition: 0.3s;
+  text-decoration: none;
+}
+.signup-navlink:hover {
+  color: var(--dl-color-scheme-brown);
+  cursor: pointer;
+  font-weight: bold;
+}
+.signup-navlink1 {
+  display: contents;
 }
 .signup-profile {
+  width: 100%;
+  margin-top: 5vh;
+  text-align: center;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.signup-text2 {
+  font-style: normal;
+  transition: 0.3s;
+  font-weight: 600;
+  margin-left: var(--dl-space-space-halfunit);
+}
+.signup-text2:hover {
+  color: var(--dl-color-scheme-brown);
+  cursor: pointer;
+  font-weight: bold;
+}
+.signup-profile1 {
   display: flex;
   align-self: center;
   margin-top: 5vh;
@@ -119,6 +173,9 @@
   margin-left: var(--dl-space-space-halfunit);
 }
 @media(max-width: 991px) {
+  .signup-container1 {
+    width: 100%;
+  }
   .signup-text1 {
     font-size: 20px;
   }
@@ -136,6 +193,11 @@
     display: flex;
     padding: var(--dl-space-space-twounits);
     justify-content: center;
+  }
+  .signup-text2 {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
   }
   .signup-text3 {
     font-size: 15px;
