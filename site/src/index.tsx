@@ -1,3 +1,6 @@
+import './style.css'
+import "react-toastify/dist/ReactToastify.css";
+
 import React from 'react'
 import ReactDOM from 'react-dom/client';
 import {
@@ -6,7 +9,6 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import './style.css'
 import Store from './store'
 import Home from './views/home'
 import Login from './views/login'

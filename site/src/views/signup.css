@@ -43,22 +43,30 @@
 }
 .signup-text1 {
   width: 100%;
-  font-size: 25px;
+  font-size: 15px;
   font-style: normal;
-  margin-top: 10vh;
+  margin-top: 20px;
   text-align: center;
   font-weight: 100;
 }
 .signup-container4 {
   flex: 0 0 auto;
   width: 80%;
-  height: 45vh;
   display: flex;
   align-self: center;
-  margin-top: 10vh;
   align-items: flex-start;
   flex-direction: column;
   justify-content: space-between;
+}
+.signup-container5 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 40vh;
+  margin-top: 20px;
 }
 .signup-textinput {
   width: 100%;
@@ -114,8 +122,9 @@
 }
 .signup-button:hover {
   cursor: pointer;
+  transform: scale(1.02);
 }
-.signup-container5 {
+.signup-container6 {
   width: 100%;
   height: 32px;
   display: flex;
@@ -124,6 +133,7 @@
 .signup-navlink {
   width: 100%;
   height: 100%;
+  margin-top: 20PX;
   text-align: center;
   transition: 0.3s;
   text-decoration: none;
@@ -158,7 +168,7 @@
 .signup-profile1 {
   display: flex;
   align-self: center;
-  margin-top: 5vh;
+  margin-top: 2vh;
   align-items: center;
 }
 .signup-image {
@@ -177,7 +187,7 @@
     width: 100%;
   }
   .signup-text1 {
-    font-size: 20px;
+    font-size: 15px;
   }
 }
 @media(max-width: 767px) {

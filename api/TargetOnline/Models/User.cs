@@ -16,8 +16,6 @@ namespace TargetOnline.Models
         public bool IsEmailVerified { get; set; }
         public bool IsPhoneNumberVerified { get; set; }
         public bool IsAdmin { get; set; }
-        public bool IsDeliveryMan { get; set; }
-        public bool IsTutor { get; set; }
         public bool IsPasswordEncrypted { get; set; }
         public string AvatarURL { get; set; }
         public bool HasAvatar { get; set; }

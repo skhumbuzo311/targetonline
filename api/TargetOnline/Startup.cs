@@ -12,6 +12,7 @@ using TargetOnline.Services.Validations.SettingsValidation;
 using TargetOnline.Models;
 using TargetOnline.Services.Emails;
 using Microsoft.EntityFrameworkCore;
+using TargetOnline.Context;
 
 namespace TargetOnline
 {
@@ -61,14 +62,14 @@ namespace TargetOnline
 
             services.AddControllers();
 
-            services.AddDbContext<DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Configuration.GetSection("Environment").Value)));
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Configuration.GetSection("Environment").Value)));
 
             services.AddScoped<ISettingsValidationService, SettingsValidationService>();
             services.AddScoped<IAuthenticationValidationService, AuthenticationValidationService>();
 
             services.AddScoped<IHandler, Handler>();
-            services.AddTransient<IEmailService, EmailService>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddTransient<IEmailService, EmailService>();
             services.AddScoped<INotificationsService, NotificationsService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
         }

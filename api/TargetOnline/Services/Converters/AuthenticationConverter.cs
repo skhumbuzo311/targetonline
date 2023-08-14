@@ -19,7 +19,6 @@ namespace TargetOnline.Services.Converters
                 IsEmailVerified = user.IsEmailVerified,
                 IsPhoneNumberVerified = user.IsPhoneNumberVerified,
                 IsAdmin = user.IsAdmin,
-                IsDeliveryMan = user.IsDeliveryMan,
                 IsPasswordEncrypted = true,
                 AvatarURL = user.AvatarURL,
                 HasAvatar = user.HasAvatar,

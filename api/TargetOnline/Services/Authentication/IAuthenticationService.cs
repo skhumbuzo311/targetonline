@@ -7,6 +7,6 @@ namespace TargetOnline.Services.Authentication
     public interface IAuthenticationService
     {
         IOutcome<User> login(User user);
-        IOutcome<SignupResponse> signup(User user);
+        IOutcome<User> signup(User user);
     }
 }

@@ -25,7 +25,7 @@ namespace TargetOnline.Controllers
         }
 
         [HttpPost("signup")]
-        public ActionResult<IOutcome<SignupResponse>>  PostSignup(User user)
+        public ActionResult<IOutcome<User>>  PostSignup(User user)
         {
             return _outcomeHandler.HandleOutcome(_authentication.signup(user));
         }

@@ -125,7 +125,9 @@ const Partnership = (props) => {
           requirements. Once the client has signed the contract as the partner
           you are entitled to 50% of the profit.
         </span>
-        <button className="partnership-button button">Register</button>
+        <Link to="/partner" className="partnership-button button" >
+          Register
+        </Link>
         <div className="partnership-features">
           <h1 className="partnership-text14">Passive Sustainable Income</h1>
           <div className="partnership-container09">

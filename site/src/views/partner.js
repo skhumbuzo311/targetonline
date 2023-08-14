@@ -1,21 +1,25 @@
+import './partner.css'
+
 import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 import { CurrentUserContext } from 'store';
 
-import './partner.css'
+import { isNullOrEmpty } from 'shared/utils/string';
 
 const Partner = (props) => {
   const navigate = useNavigate();
-  const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
-  const [isSideNavVisible, setSideNavVisible] = useState(false);
+  const [mouseEntered, onMouseEnter] = useState(false);
   const [currentUser] = useContext(CurrentUserContext);
+  const [isSideNavVisible, setSideNavVisible] = useState(false);
+  const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
 
   useEffect(() => {
-    if(Object.keys(currentUser).length === 0) navigate('/login')
+    if(isNullOrEmpty(currentUser) | !currentUser.hasOwnProperty('id')) navigate('/login')
   }, [])
 
+  console.log('mouseEntered', mouseEntered)
   return (
     <div className="partner-container">
       <Helmet>
@@ -122,16 +126,17 @@ const Partner = (props) => {
           <div className="partner-blog-post-card">
             <img
               alt="image"
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDd8fHBvcnRyYWl0fGVufDB8fHx8MTYyNjM3ODk3Mg&amp;ixlib=rb-1.2.1&amp;w=1000"
-              image_src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDd8fHBvcnRyYWl0fGVufDB8fHx8MTYyNjM3ODk3Mg&amp;ixlib=rb-1.2.1&amp;h=1000"
+              src={require(mouseEntered ? "../assets/update-avatar.png" : "../assets/user.png")}
               className="partner-image2"
+              onMouseEnter={() => onMouseEnter(true)}
+              onMouseLeave={() => onMouseEnter(false)}
             />
             <div className="partner-container10">
               <div className="partner-container11">
                 <span className="partner-text12">Markting SPECIALIST</span>
-                <span className="partner-text13">info@targetonline.co.za</span>
+                <span className="partner-text13">{currentUser.emailAddress}</span>
               </div>
-              <h1 className="partner-text14">Shane Petersen</h1>
+              <h1 className="partner-text14">{`${currentUser.firstName} ${currentUser.lastName}`}</h1>
               <span className="partner-text15">
                 Hi I&apos;m the marking specialist I work with a team that
                 builds and maintain reliable applications that are affordable.

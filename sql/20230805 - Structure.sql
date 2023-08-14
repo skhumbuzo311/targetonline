@@ -25,7 +25,7 @@ CREATE TABLE [to].[User]
 	ImageWidth INT NOT NULL DEFAULT 0,
 	Customers INT NOT NULL DEFAULT 0,
 	Projects INT NOT NULL DEFAULT 0,
-	Income INT NOT NULL DEFAULT 0,
+	Income DECIMAL(18, 4) NOT NULL DEFAULT 0,
 	Password VARCHAR(MAX) NOT NULL,
 	LastLoggedIn DateTime NOT NULL,
 	CreatedAt DateTime NOT NULL

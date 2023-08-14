@@ -17,7 +17,6 @@ namespace TargetOnline.Entities
         public bool IsPhoneNumberVerified { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsOnline { get; set; }
-        public bool IsDeliveryMan { get; set; }
         public string AvatarURL { get; set; }
         public int AverageRating { get; set; }
         public bool HasAvatar { get; set; }

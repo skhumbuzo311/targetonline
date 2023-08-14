@@ -292,7 +292,9 @@
   object-fit: cover;
   flex-shrink: 0;
   border-radius: 0px;
+  cursor: pointer;
 }
+
 .partner-container10 {
   display: flex;
   align-items: flex-start;

@@ -26,12 +26,12 @@ namespace TargetOnline.Services.Authentication
             _encryptionKey = encryptionKey.Value;
         }
 
-        public IOutcome<Models.SignupResponse> signup(Models.User user)
+        public IOutcome<Models.User> signup(Models.User user)
         {
             (bool canAction, string error) = _authenticationValidation.CanAddUser(user);
             if (!canAction)
             {
-                return new Failure<Models.SignupResponse>(error);
+                return new Failure<Models.User>(error);
             }
 
             var newUser = new User()
@@ -49,13 +49,7 @@ namespace TargetOnline.Services.Authentication
             _smartAutoPartsDbContext.Users.Add(newUser);
             _smartAutoPartsDbContext.SaveChanges();
 
-            return new Success<Models.SignupResponse>(new Models.SignupResponse() {
-                User = AuthenticationConverter.ConvertUserToModel(newUser),
-                AdminsExpoPushTokens = _smartAutoPartsDbContext.Users
-                    .Where(u => u.IsAdmin)
-                    .Select(u => u.ExpoPushToken)
-                    .ToList()
-            });
+            return new Success<Models.User>(AuthenticationConverter.ConvertUserToModel(newUser));
         }
 
         public IOutcome<Models.User> login(Models.User user)

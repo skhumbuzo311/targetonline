@@ -62,12 +62,7 @@ namespace TargetOnline.Services.Validations.AuthenticationValidation
                 return (false, $"No user exists with phone number {user.PhoneNumber}, please create new account.");
             }
 
-            if (!user.IsPasswordEncrypted && Encryption.Decrypt(encryptionKey, dbUser.Password) != user.Password)
-            {
-                return (false, $"Password incorrect.");
-            }
-
-            if (user.IsPasswordEncrypted && user.Password != dbUser.Password)
+            if (Encryption.Decrypt(encryptionKey, dbUser.Password) != user.Password)
             {
                 return (false, $"Password incorrect.");
             }
