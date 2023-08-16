@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import './partnership.css'
+
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 import FeatureCard22 from '../components/feature-card22'
-import './partnership.css'
+import { CurrentUserContext } from 'store'
+import { isNullOrEmpty } from 'shared/utils/string';
 
 const Partnership = (props) => {
+  const [currentUser] = useContext(CurrentUserContext);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   return (

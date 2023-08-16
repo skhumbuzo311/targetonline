@@ -1,25 +1,28 @@
 import './partner.css'
 
 import { useState, useContext, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 import { CurrentUserContext } from 'store';
-
 import { isNullOrEmpty } from 'shared/utils/string';
 
-const Partner = (props) => {
+const Partner = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const [mouseEntered, onMouseEnter] = useState(false);
-  const [currentUser] = useContext(CurrentUserContext);
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
+  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+
+  useEffect(() => setCurrentUser(state), [state])
 
   useEffect(() => {
-    if(isNullOrEmpty(currentUser) | !currentUser.hasOwnProperty('id')) navigate('/login')
+    if(isNullOrEmpty(state) ) navigate('/login')
   }, [])
 
-  console.log('mouseEntered', mouseEntered)
+  
+
   return (
     <div className="partner-container">
       <Helmet>
@@ -45,13 +48,28 @@ const Partner = (props) => {
               Consulting
             </Link>
           </nav>
-          <Link to="/" className="consulting-navlink04">
-            <div className="consulting-buttons">
-              <svg viewBox="0 0 1024 1024" className="consulting-icon">
-                <path d="M426 854h-212v-342h-128l426-384 426 384h-128v342h-212v-256h-172v256z"></path>
-              </svg>
-            </div>
-          </Link>
+          {isNullOrEmpty(currentUser) || !currentUser.hasOwnProperty('id')
+            ? <div className="home-buttons">
+                <Link to="/" className="home-navlink03">
+                  <svg viewBox="0 0 1024 1024" className="home-icon">
+                    <path d="M426 854h-212v-342h-128l426-384 426 384h-128v342h-212v-256h-172v256z"></path>
+                  </svg>
+                </Link>
+              </div>
+            :<Link to="/partner" className="home-navlink03">
+              <div className="nav-profile">
+                <svg
+                  viewBox="0 0 1024 1024"
+                  fill="#d19d54"
+                  className="nav-icon"
+                  scale={100}
+                >
+                  <path d="M870.286 765.143c-14.857-106.857-58.286-201.714-155.429-214.857-50.286 54.857-122.857 89.714-202.857 89.714s-152.571-34.857-202.857-89.714c-97.143 13.143-140.571 108-155.429 214.857 79.429 112 210.286 185.714 358.286 185.714s278.857-73.714 358.286-185.714zM731.429 365.714c0-121.143-98.286-219.429-219.429-219.429s-219.429 98.286-219.429 219.429 98.286 219.429 219.429 219.429 219.429-98.286 219.429-219.429zM1024 512c0 281.714-228.571 512-512 512-282.857 0-512-229.714-512-512 0-282.857 229.143-512 512-512s512 229.143 512 512z"></path>
+                </svg>
+                <span className="nav-text01">{currentUser.firstName}</span>
+              </div>
+            </Link>
+          }
         </div>
         <div data-thq="thq-burger-menu" className="home-burger-menu" onClick={()=> setSideNavVisible(true)}>
           <svg viewBox="0 0 1024 1024" className="consulting-icon2">

@@ -106,6 +106,29 @@
   height: 30px;
   text-decoration: none;
 }
+
+.nav-profile {
+  width: 125px;
+  display: flex;
+  position: relative;
+  align-self: stretch;
+  align-items: center;
+  flex-direction: row;
+  /* border: 1px solid; */
+  justify-content: space-between;
+}
+.nav-profile:hover {
+  color: #d19d54;
+}
+.nav-icon {
+  fill: #d19d54;
+  flex: 1;
+  color: var(--dl-color-scheme-brown);
+  width: 20px;
+  height: 20px;
+  text-decoration: none;
+}
+
 .home-burger-menu {
   display: none;
 }
@@ -204,6 +227,10 @@
 }
 .home-text01 {
   margin-bottom: var(--dl-space-space-threeunits);
+}
+.nav-text01 {
+  margin-bottom: var(--dl-space-space-threeunits);
+  display: contents;
 }
 .home-text02 {
   margin-bottom: var(--dl-space-space-threeunits);

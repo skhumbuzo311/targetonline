@@ -1,6 +1,6 @@
 import './login.css'
 
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -26,12 +26,13 @@ const Login: FunctionComponent = () => {
 
           setCurrentUser(response); 
 
-          navigate('/partner');
-
           toast.success(`Welcome back ${response.firstName}`)
+
+          navigate('/partner', { 'state' : response});
       },
       onError: (error: any) => NotifyFailure(error.response, error.message)
   }, [])
+
 
   return (
     <div className="login-container">

@@ -26,9 +26,9 @@ const Signup: FunctionComponent = () => {
 
           setCurrentUser(response); 
 
-          toast.success(`Welcome back ${response.firstName}`)
+          toast.success(`Welcome back ${response.firstName}`) 
 
-          navigate('/partner');
+          navigate('/partner', { 'state' : response});
       },
       onError: (error: any) => NotifyFailure(error.response, error.message)
   }, [])
