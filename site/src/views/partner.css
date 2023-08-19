@@ -293,6 +293,9 @@
   flex-shrink: 0;
   border-radius: 0px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .partner-container10 {

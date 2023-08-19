@@ -3,6 +3,7 @@ import './partner.css'
 import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { CurrentUserContext } from 'store';
 import { isNullOrEmpty } from 'shared/utils/string';
@@ -18,7 +19,8 @@ const Partner = () => {
   useEffect(() => setCurrentUser(state), [state])
 
   useEffect(() => {
-    if(isNullOrEmpty(state) ) navigate('/login')
+    if(isNullOrEmpty(state)) navigate('/login')
+    else document.getElementById('partner-blog').scrollIntoView();
   }, [])
 
   
@@ -80,7 +82,7 @@ const Partner = () => {
           <div className="consulting-sidebar">
             <nav className="consulting-nav">
               <img
-                alt="image"
+                alt="avatar"
                 src="/icon-1500h.png"
                 className="consulting-image1"
               />
@@ -139,16 +141,29 @@ const Partner = () => {
           </a>
         </div>
       </div>
-      <div className="partner-blog">
+      <div className="partner-blog" id="partner-blog" >
         <div className="partner-container09">
           <div className="partner-blog-post-card">
+            <label htmlFor="file-input">
             <img
-              alt="image"
-              src={require(mouseEntered ? "../assets/update-avatar.png" : "../assets/user.png")}
-              className="partner-image2"
-              onMouseEnter={() => onMouseEnter(true)}
-              onMouseLeave={() => onMouseEnter(false)}
-            />
+                alt="avatar"
+                src={require(mouseEntered ? "../assets/update-avatar.png" : "../assets/user.png")}
+                className="partner-image2"
+                onMouseEnter={() => onMouseEnter(true)}
+                onMouseLeave={() => onMouseEnter(false)}
+              />
+            <div className="partner-image2">
+              <CircularProgress size={100} color="inherit" />
+            </div>
+            </label>
+              <input
+                id="file-input"
+                type="file"
+                alt="avatar"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={e => console.log('e.target.files[0]', e.target.files[0])}
+              />
             <div className="partner-container10">
               <div className="partner-container11">
                 <span className="partner-text12">Markting SPECIALIST</span>
