@@ -2,3 +2,5 @@
 /api/TargetOnline/.vs
 /api/TargetOnline/bin
 /api/TargetOnline/obj
+/site/src/appsettings.json
+/api/TargetOnline/appsettings.json

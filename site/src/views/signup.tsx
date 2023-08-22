@@ -6,29 +6,28 @@ import { Helmet } from 'react-helmet'
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { toast } from "react-toastify";
 
-import { CurrentUserContext } from "store";
+import * as authApi from "api/authentication";
 import { User } from 'api/authentication/types';
 import useApi from 'shared/utils/react_use_api';
-import * as authApi from "api/authentication";
 import NotifyFailure from 'shared/utils/notify-failure';
+import { CurrentUserContext } from 'store';
 
 const Signup: FunctionComponent = () => {
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [user, setUser] = useState<any>();
+  const { currentUser } = useContext(CurrentUserContext);
 
   const postSignup = useApi({
-      action: () => authApi.postSignup(currentUser),
+      action: () => authApi.postSignup(user),
       defer: true,
       onSuccess: (response: User) => {
-          localStorage.setItem('targetOnlineUser', JSON.stringify({
-              ...response
-          }));
+        currentUser.current = response;
 
-          setCurrentUser(response); 
+        localStorage.setItem('targetOnlineUser', JSON.stringify(response));
 
-          toast.success(`Welcome back ${response.firstName}`) 
+        toast.success(`Welcome ${response.firstName}`) 
 
-          navigate('/partner', { 'state' : response});
+        navigate('/partner') 
       },
       onError: (error: any) => NotifyFailure(error.response, error.message)
   }, [])
@@ -52,8 +51,8 @@ const Signup: FunctionComponent = () => {
                 autoFocus
                 placeholder="First name"
                 className="signup-textinput input"
-                onChange={(e: React.FormEvent<HTMLInputElement>) => setCurrentUser({
-                  ...currentUser,
+                onChange={(e: React.FormEvent<HTMLInputElement>) => setUser({
+                  ...user,
                   firstName: e.currentTarget.value
                 })}
               />
@@ -63,8 +62,8 @@ const Signup: FunctionComponent = () => {
                 autoFocus
                 placeholder="Last name"
                 className="signup-textinput1 input"
-                onChange={(e: React.FormEvent<HTMLInputElement>) => setCurrentUser({
-                  ...currentUser,
+                onChange={(e: React.FormEvent<HTMLInputElement>) => setUser({
+                  ...user,
                   lastName: e.currentTarget.value
                 })}
               />
@@ -74,8 +73,8 @@ const Signup: FunctionComponent = () => {
                 autoFocus
                 placeholder="Phone number"
                 className="signup-textinput2 input"
-                onChange={(e: React.FormEvent<HTMLInputElement>) => setCurrentUser({
-                  ...currentUser,
+                onChange={(e: React.FormEvent<HTMLInputElement>) => setUser({
+                  ...user,
                   phoneNumber: e.currentTarget.value
                 })}
               />
@@ -85,8 +84,8 @@ const Signup: FunctionComponent = () => {
                 autoFocus
                 placeholder="Email"
                 className="signup-textinput3 input"
-                onChange={(e: React.FormEvent<HTMLInputElement>) => setCurrentUser({
-                  ...currentUser,
+                onChange={(e: React.FormEvent<HTMLInputElement>) => setUser({
+                  ...user,
                   emailAddress: e.currentTarget.value
                 })}
               />
@@ -96,8 +95,8 @@ const Signup: FunctionComponent = () => {
                 autoFocus
                 placeholder="Password"
                 className="signup-textinput4 input"
-                onChange={(e: React.FormEvent<HTMLInputElement>) => setCurrentUser({
-                  ...currentUser,
+                onChange={(e: React.FormEvent<HTMLInputElement>) => setUser({
+                  ...user,
                   password: e.currentTarget.value
                 })}
               />

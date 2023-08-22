@@ -14,25 +14,25 @@ import NotifyFailure from 'shared/utils/notify-failure';
 
 const Login: FunctionComponent = () => {
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [userLogin, setUserLogin] = useState<any>(null);
+  const { currentUser } = useContext(CurrentUserContext);
+
+  currentUser.current = currentUser
 
   const postLogin = useApi({
-      action: () => authApi.postLogin(currentUser),
+      action: () => authApi.postLogin(userLogin),
       defer: true,
-      onSuccess: (response: User) => {
-          localStorage.setItem('targetOnlineUser', JSON.stringify({
-              ...response
-          }));
+      onSuccess: async (response: User) => {
+        currentUser.current = response;
 
-          setCurrentUser(response); 
+        localStorage.setItem('targetOnlineUser', JSON.stringify(response));
 
-          toast.success(`Welcome back ${response.firstName}`)
+        toast.success(`Welcome back ${response.firstName}`)
 
-          navigate('/partner', { 'state' : response});
+        navigate('/partner');
       },
       onError: (error: any) => NotifyFailure(error.response, error.message)
   }, [])
-
 
   return (
     <div className="login-container">
@@ -51,8 +51,8 @@ const Login: FunctionComponent = () => {
               required
               placeholder="Phone number"
               className="login-textinput input"
-              onChange={(e: React.FormEvent<HTMLInputElement>) => setCurrentUser({
-                ...currentUser,
+              onChange={(e: React.FormEvent<HTMLInputElement>) => setUserLogin({
+                ...userLogin,
                 phoneNumber: e.currentTarget.value
               })}
             />
@@ -62,8 +62,8 @@ const Login: FunctionComponent = () => {
               autoFocus
               placeholder="Password"
               className="login-textinput1 input"
-              onChange={(e: React.FormEvent<HTMLInputElement>) => setCurrentUser({
-                ...currentUser,
+              onChange={(e: React.FormEvent<HTMLInputElement>) => setUserLogin({
+                ...userLogin,
                 password: e.currentTarget.value
               })}
             />

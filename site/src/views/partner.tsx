@@ -1,29 +1,49 @@
 import './partner.css'
 
-import { useState, useContext, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useState, useContext, FunctionComponent, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { CurrentUserContext } from 'store';
+import { CurrentUserContext } from "store";
 import { isNullOrEmpty } from 'shared/utils/string';
+import useApi from 'shared/utils/react_use_api';
+import * as settingsApi from "api/settings";
+import { User } from 'api/authentication/types';
+import { toast } from 'react-toastify';
+import NotifyFailure from 'shared/utils/notify-failure';
 
-const Partner = () => {
+const Partner: FunctionComponent = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const [mouseEntered, onMouseEnter] = useState(false);
+  const { currentUser } = useContext(CurrentUserContext);
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
-  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
-
-  useEffect(() => setCurrentUser(state), [state])
+  const [avatarMouseEntered, onAvatarMouseEnter] = useState(false);
+  const [profileMouseEntered, onProfileMouseEnter] = useState(false);
 
   useEffect(() => {
-    if(isNullOrEmpty(state)) navigate('/login')
-    else document.getElementById('partner-blog').scrollIntoView();
+    if (isNullOrEmpty(currentUser.current)) navigate('/login')
+    else document.getElementById('partner-blog')!.scrollIntoView();
   }, [])
 
-  
+  const updateAvatar = useApi({
+    action: (file: File) => {
+      const formData = new FormData();
+
+      formData.append('formFile', file)
+      formData.append('createdByUserId', currentUser.current.id)
+
+
+      return settingsApi.updateAvatar(formData)
+    },
+    defer: true,
+    onSuccess: (response: User) => {
+      currentUser.current = response;
+      localStorage.setItem('targetOnlineUser', JSON.stringify(response));
+      toast.success('Avatar updated successfully');
+    },
+    onError: (error: any) => NotifyFailure(error.response, error.message)
+  }, [])
 
   return (
     <div className="partner-container">
@@ -50,35 +70,44 @@ const Partner = () => {
               Consulting
             </Link>
           </nav>
-          {isNullOrEmpty(currentUser) || !currentUser.hasOwnProperty('id')
+          {isNullOrEmpty(currentUser.current)
             ? <div className="home-buttons">
-                <Link to="/" className="home-navlink03">
-                  <svg viewBox="0 0 1024 1024" className="home-icon">
-                    <path d="M426 854h-212v-342h-128l426-384 426 384h-128v342h-212v-256h-172v256z"></path>
+              <Link to="/" className="home-navlink03">
+                <svg viewBox="0 0 1024 1024" className="home-icon">
+                  <path d="M426 854h-212v-342h-128l426-384 426 384h-128v342h-212v-256h-172v256z"></path>
+                </svg>
+              </Link>
+            </div>
+            : <span className="home-navlink03">
+              <div className="nav-profile">
+                <Link title='Logout' to="/login" className="home-navlink03">
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    fill="#d19d54"
+                    className="nav-icon"
+                    scale={100}
+                    onMouseEnter={() => onProfileMouseEnter(true)}
+                    onMouseLeave={() => onProfileMouseEnter(false)}
+                  >
+                    {!profileMouseEntered
+                      ? <path d="M870.286 765.143c-14.857-106.857-58.286-201.714-155.429-214.857-50.286 54.857-122.857 89.714-202.857 89.714s-152.571-34.857-202.857-89.714c-97.143 13.143-140.571 108-155.429 214.857 79.429 112 210.286 185.714 358.286 185.714s278.857-73.714 358.286-185.714zM731.429 365.714c0-121.143-98.286-219.429-219.429-219.429s-219.429 98.286-219.429 219.429 98.286 219.429 219.429 219.429 219.429-98.286 219.429-219.429zM1024 512c0 281.714-228.571 512-512 512-282.857 0-512-229.714-512-512 0-282.857 229.143-512 512-512s512 229.143 512 512z"></path>
+                      : <path d="M877.714 512c0 241.714-197.143 438.857-438.857 438.857s-438.857-197.143-438.857-438.857c0-138.857 64-266.857 175.429-350.286 32.571-24.571 78.286-18.286 102.286 14.286 24.571 32 17.714 78.286-14.286 102.286-74.286 56-117.143 141.143-117.143 233.714 0 161.143 131.429 292.571 292.571 292.571s292.571-131.429 292.571-292.571c0-92.571-42.857-177.714-117.143-233.714-32-24-38.857-70.286-14.286-102.286 24-32.571 70.286-38.857 102.286-14.286 111.429 83.429 175.429 211.429 175.429 350.286zM512 73.143v365.714c0 40-33.143 73.143-73.143 73.143s-73.143-33.143-73.143-73.143v-365.714c0-40 33.143-73.143 73.143-73.143s73.143 33.143 73.143 73.143z"></path>
+                    }
                   </svg>
                 </Link>
+                <Link title='Profile' to="/partner" className="home-navlink03">
+                  <span className="nav-text01">{currentUser.current.firstName}</span>
+                </Link>
               </div>
-            :<Link to="/partner" className="home-navlink03">
-              <div className="nav-profile">
-                <svg
-                  viewBox="0 0 1024 1024"
-                  fill="#d19d54"
-                  className="nav-icon"
-                  scale={100}
-                >
-                  <path d="M870.286 765.143c-14.857-106.857-58.286-201.714-155.429-214.857-50.286 54.857-122.857 89.714-202.857 89.714s-152.571-34.857-202.857-89.714c-97.143 13.143-140.571 108-155.429 214.857 79.429 112 210.286 185.714 358.286 185.714s278.857-73.714 358.286-185.714zM731.429 365.714c0-121.143-98.286-219.429-219.429-219.429s-219.429 98.286-219.429 219.429 98.286 219.429 219.429 219.429 219.429-98.286 219.429-219.429zM1024 512c0 281.714-228.571 512-512 512-282.857 0-512-229.714-512-512 0-282.857 229.143-512 512-512s512 229.143 512 512z"></path>
-                </svg>
-                <span className="nav-text01">{currentUser.firstName}</span>
-              </div>
-            </Link>
+            </span>
           }
         </div>
-        <div data-thq="thq-burger-menu" className="home-burger-menu" onClick={()=> setSideNavVisible(true)}>
+        <div data-thq="thq-burger-menu" className="home-burger-menu" onClick={() => setSideNavVisible(true)}>
           <svg viewBox="0 0 1024 1024" className="consulting-icon2">
             <path d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"></path>
           </svg>
         </div>
-        <div data-thq="thq-mobile-menu"  className={isSideNavVisible ? 'home-mobile-menu-open' : isCloseBtnClicked ? 'home-mobile-menu-close' : 'home-mobile-menu'}>
+        <div data-thq="thq-mobile-menu" className={isSideNavVisible ? 'home-mobile-menu-open' : isCloseBtnClicked ? 'home-mobile-menu-close' : 'home-mobile-menu'}>
           <div className="consulting-sidebar">
             <nav className="consulting-nav">
               <img
@@ -87,19 +116,22 @@ const Partner = () => {
                 className="consulting-image1"
               />
               <Link to="/software-development" className="home-text01 home-text">
-              Software Development
+                Software Development
               </Link>
               <Link to="/outsourcing" className="home-text01 home-text">
-              Outsourcing
+                Outsourcing
               </Link>
               <Link to="/ui-ux-design" className="home-text01 home-text">
-              UI &amp; UX Design
+                UI &amp; UX Design
               </Link>
               <Link to="/consulting" className="home-text01 home-text">
-              Consulting
+                Consulting
               </Link>
               <Link to="/partnership" className="home-text01 home-text">
-              Partnership
+                Partnership
+              </Link>
+              <Link to="/login" className="home-text01 home-text">
+                Logout
               </Link>
             </nav>
             <span className="home-text06" onClick={() => {
@@ -141,57 +173,60 @@ const Partner = () => {
           </a>
         </div>
       </div>
-      <div className="partner-blog" id="partner-blog" >
-        <div className="partner-container09">
-          <div className="partner-blog-post-card">
-            <label htmlFor="file-input">
-            <img
-                alt="avatar"
-                src={require(mouseEntered ? "../assets/update-avatar.png" : "../assets/user.png")}
-                className="partner-image2"
-                onMouseEnter={() => onMouseEnter(true)}
-                onMouseLeave={() => onMouseEnter(false)}
-              />
-            <div className="partner-image2">
-              <CircularProgress size={100} color="inherit" />
-            </div>
-            </label>
+      {!isNullOrEmpty(currentUser.current) && (
+        <div className="partner-blog" id="partner-blog" >
+          <div className="partner-container09">
+            <div className="partner-blog-post-card">
+              <label htmlFor="file-input">
+                {updateAvatar.inProgress
+                  ? <div className="partner-image2">
+                    <CircularProgress size={100} color="inherit" />
+                  </div>
+                  : <img
+                    alt="avatar"
+                    src={isNullOrEmpty(currentUser.current.avatarURL) ? require(avatarMouseEntered ? "../assets/update-avatar.png" : "../assets/user.png") : currentUser.current.avatarURL + "?" + new Date().getTime()}
+                    className="partner-image2"
+                    onMouseEnter={() => onAvatarMouseEnter(true)}
+                    onMouseLeave={() => onAvatarMouseEnter(false)}
+                  />
+                }
+              </label>
               <input
                 id="file-input"
                 type="file"
                 alt="avatar"
                 accept="image/*"
                 style={{ display: "none" }}
-                onChange={e => console.log('e.target.files[0]', e.target.files[0])}
+                onChange={(e: any) => updateAvatar.execute(e.target.files![0])}
               />
-            <div className="partner-container10">
-              <div className="partner-container11">
-                <span className="partner-text12">Markting SPECIALIST</span>
-                <span className="partner-text13">{currentUser.emailAddress}</span>
-              </div>
-              <h1 className="partner-text14">{`${currentUser.firstName} ${currentUser.lastName}`}</h1>
-              <span className="partner-text15">
-                Hi I&apos;m the marking specialist I work with a team that
-                builds and maintain reliable applications that are affordable.
-                If you have an idea that speaks to the needs of the society get
-                in contact so we can bring your idea to life.
-              </span>
-              <div className="partner-container12">
-                <div className="partner-profile">
-                  <img
-                    alt="profile"
-                    src="/icon-1500h.png"
-                    className="partner-image3"
-                  />
-                  <span className="partner-text16">Target Online Pty Ltd</span>
+              <div className="partner-container10">
+                <div className="partner-container11">
+                  <span className="partner-text12">Markting SPECIALIST</span>
+                  <span className="partner-text13">{currentUser.current.emailAddress}</span>
                 </div>
-                <span className="partner-text17">www.targetonline.co.za</span>
+                <h1 className="partner-text14">{`${currentUser.current.firstName} ${currentUser.current.lastName}`}</h1>
+                <span className="partner-text15">
+                  Hi I&apos;m the marking specialist I work with a team that
+                  builds and maintain reliable applications that are affordable.
+                  If you have an idea that speaks to the needs of the society get
+                  in contact so we can bring your idea to life.
+                </span>
+                <div className="partner-container12">
+                  <div className="partner-profile">
+                    <img
+                      alt="profile"
+                      src="/icon-1500h.png"
+                      className="partner-image3"
+                    />
+                    <span className="partner-text16">Target Online Pty Ltd</span>
+                  </div>
+                  <span className="partner-text17">www.targetonline.co.za</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="partner-container13"></div>
-      </div>
+      )}
       <div className="partner-stats">
         <div className="partner-stat">
           <svg viewBox="0 0 1152 1024" className="partner-icon04">
@@ -200,7 +235,7 @@ const Partner = () => {
           </svg>
           <span className="partner-text18">Customers</span>
           <span className="partner-text19">My Customers </span>
-          <h1 className="partner-text20">0</h1>
+          <h1 className="partner-text20">{currentUser.current.customers}</h1>
         </div>
         <div className="partner-stat1">
           <svg viewBox="0 0 1024 1024" className="partner-icon07">
@@ -208,7 +243,7 @@ const Partner = () => {
           </svg>
           <span className="partner-text21">Projects</span>
           <span className="partner-text22">Projects for my customers</span>
-          <h1 className="partner-text23">0</h1>
+          <h1 className="partner-text23">{currentUser.current.projects}</h1>
         </div>
         <div className="partner-stat2">
           <svg viewBox="0 0 1024 1024" className="partner-icon09">
@@ -218,7 +253,7 @@ const Partner = () => {
           <span className="partner-text25">
             What I&apos;m earning per  month
           </span>
-          <h1 className="partner-text26">R0</h1>
+          <h1 className="partner-text26">R{currentUser.current.income}</h1>
         </div>
       </div>
       <footer className="partner-footer">
@@ -228,7 +263,7 @@ const Partner = () => {
           </Link>
           <nav className="partner-nav1">
             <Link to="/software-development" className="partner-navlink5">
-                  Software Development
+              Software Development
             </Link>
             <Link to="/outsourcing" className="partner-navlink6">
               Outsourcing

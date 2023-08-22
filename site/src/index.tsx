@@ -20,6 +20,7 @@ import Outsourcing from './views/outsourcing'
 import Partnership from './views/partnership'
 import SoftwareDevelopment from './views/software-development'
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('app') as HTMLElement
 );

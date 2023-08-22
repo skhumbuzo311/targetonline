@@ -10,9 +10,10 @@ import { CurrentUserContext } from 'store'
 import { isNullOrEmpty } from 'shared/utils/string';
 
 const Outsourcing = (props) => {
-  const [currentUser] = useContext(CurrentUserContext);
-  const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
+  const { currentUser } = useContext(CurrentUserContext);
   const [isSideNavVisible, setSideNavVisible] = useState(false);
+  const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
+  const [profileMouseEntered, onProfileMouseEnter] = useState(false);
   return (
     <div className="outsourcing-container">
       <Helmet>
@@ -41,62 +42,74 @@ const Outsourcing = (props) => {
               Consulting
             </Link>
           </nav>
-          {isNullOrEmpty(currentUser) || !currentUser.hasOwnProperty('id')
+          {isNullOrEmpty(currentUser.current)
             ? <div className="home-buttons">
-                <Link to="/" className="home-navlink03">
-                  <svg viewBox="0 0 1024 1024" className="home-icon">
-                    <path d="M426 854h-212v-342h-128l426-384 426 384h-128v342h-212v-256h-172v256z"></path>
+              <Link to="/" className="home-navlink03">
+                <svg viewBox="0 0 1024 1024" className="home-icon">
+                  <path d="M426 854h-212v-342h-128l426-384 426 384h-128v342h-212v-256h-172v256z"></path>
+                </svg>
+              </Link>
+            </div>
+            : <span className="home-navlink03">
+              <div className="nav-profile">
+                <Link title='Logout' to="/login" className="home-navlink03">
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    fill="#d19d54"
+                    className="nav-icon"
+                    scale={100}
+                    onMouseEnter={() => onProfileMouseEnter(true)}
+                    onMouseLeave={() => onProfileMouseEnter(false)}
+                  >
+                    {!profileMouseEntered
+                      ? <path d="M870.286 765.143c-14.857-106.857-58.286-201.714-155.429-214.857-50.286 54.857-122.857 89.714-202.857 89.714s-152.571-34.857-202.857-89.714c-97.143 13.143-140.571 108-155.429 214.857 79.429 112 210.286 185.714 358.286 185.714s278.857-73.714 358.286-185.714zM731.429 365.714c0-121.143-98.286-219.429-219.429-219.429s-219.429 98.286-219.429 219.429 98.286 219.429 219.429 219.429 219.429-98.286 219.429-219.429zM1024 512c0 281.714-228.571 512-512 512-282.857 0-512-229.714-512-512 0-282.857 229.143-512 512-512s512 229.143 512 512z"></path>
+                      : <path d="M877.714 512c0 241.714-197.143 438.857-438.857 438.857s-438.857-197.143-438.857-438.857c0-138.857 64-266.857 175.429-350.286 32.571-24.571 78.286-18.286 102.286 14.286 24.571 32 17.714 78.286-14.286 102.286-74.286 56-117.143 141.143-117.143 233.714 0 161.143 131.429 292.571 292.571 292.571s292.571-131.429 292.571-292.571c0-92.571-42.857-177.714-117.143-233.714-32-24-38.857-70.286-14.286-102.286 24-32.571 70.286-38.857 102.286-14.286 111.429 83.429 175.429 211.429 175.429 350.286zM512 73.143v365.714c0 40-33.143 73.143-73.143 73.143s-73.143-33.143-73.143-73.143v-365.714c0-40 33.143-73.143 73.143-73.143s73.143 33.143 73.143 73.143z"></path>
+                    }
                   </svg>
                 </Link>
+                <Link title='Profile' to="/partner" className="home-navlink03">
+                  <span className="nav-text01">{currentUser.current.firstName}</span>
+                </Link>
               </div>
-            :<Link to="/partner" className="home-navlink03">
-              <div className="nav-profile">
-                <svg
-                  viewBox="0 0 1024 1024"
-                  fill="#d19d54"
-                  className="nav-icon"
-                  scale={100}
-                >
-                  <path d="M870.286 765.143c-14.857-106.857-58.286-201.714-155.429-214.857-50.286 54.857-122.857 89.714-202.857 89.714s-152.571-34.857-202.857-89.714c-97.143 13.143-140.571 108-155.429 214.857 79.429 112 210.286 185.714 358.286 185.714s278.857-73.714 358.286-185.714zM731.429 365.714c0-121.143-98.286-219.429-219.429-219.429s-219.429 98.286-219.429 219.429 98.286 219.429 219.429 219.429 219.429-98.286 219.429-219.429zM1024 512c0 281.714-228.571 512-512 512-282.857 0-512-229.714-512-512 0-282.857 229.143-512 512-512s512 229.143 512 512z"></path>
-                </svg>
-                <span className="nav-text01">{currentUser.firstName}</span>
-              </div>
-            </Link>
+            </span>
           }
         </div>
-        <div data-thq="thq-burger-menu" className="home-burger-menu" onClick={()=> setSideNavVisible(true)}>
+        <div data-thq="thq-burger-menu" className="home-burger-menu" onClick={() => setSideNavVisible(true)}>
           <svg viewBox="0 0 1024 1024" className="outsourcing-icon2">
             <path d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"></path>
           </svg>
         </div>
-        <div data-thq="thq-mobile-menu"  className={isSideNavVisible ? 'home-mobile-menu-open' : isCloseBtnClicked ? 'home-mobile-menu-close' : 'home-mobile-menu'}>
+        <div data-thq="thq-mobile-menu" className={isSideNavVisible ? 'home-mobile-menu-open' : isCloseBtnClicked ? 'home-mobile-menu-close' : 'home-mobile-menu'}>
           <div className="outsourcing-sidebar">
             <nav className="outsourcing-nav">
               <img
-                alt="image"
+                alt="avatar"
                 src="/icon-1500h.png"
                 className="outsourcing-image1"
               />
               <Link to="/software-development" className="home-text01 home-text">
-              Software Development
+                Software Development
               </Link>
               <span className="home-text01 home-text" onClick={() => {
                 setSideNavVisible(false)
                 setCloseBtnClicked(true)
               }}>
-              Outsourcing
+                Outsourcing
               </span>
               <Link to="/ui-ux-design" className="home-text01 home-text">
-              UI &amp; UX Design
+                UI &amp; UX Design
               </Link>
               <Link to="/consulting" className="home-text01 home-text">
-              Consulting
+                Consulting
               </Link>
               <Link to="/partnership" className="home-text01 home-text">
-              Partnership
+                Partnership
               </Link>
               <Link to="/" className="home-text01 home-text">
-              Home
+                Home
+              </Link>
+              <Link to="/login" className="home-text01 home-text">
+                Logout
               </Link>
             </nav>
             <span className="home-text06" onClick={() => {
@@ -189,7 +202,7 @@ const Outsourcing = (props) => {
           </Link>
           <nav className="outsourcing-nav1">
             <Link to="/software-development" className="outsourcing-navlink06">
-                  Software Development
+              Software Development
             </Link>
             <Link to="/outsourcing" className="outsourcing-navlink07">
               Outsourcing

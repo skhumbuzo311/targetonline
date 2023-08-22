@@ -7,6 +7,7 @@ using TargetOnline.Services.Settings;
 using System.Collections.Generic;
 using TargetOnline.Models.HttpResponses;
 using TargetOnline.Models.HttpRequests;
+using Microsoft.AspNetCore.Http;
 
 namespace TargetOnline.Controllers
 {
@@ -41,7 +42,7 @@ namespace TargetOnline.Controllers
         }
 
         [HttpPut("update-avatar")]
-        public async Task<ActionResult<IOutcome<User>>> UpdateAvatar()
+        public async Task<ActionResult<IOutcome<User>>> UpdateAvatar(IFormFile formFile)
         {
             return _outcomeHandler.HandleOutcome(await _usersService.UpdateAvatar(Request)); ;
         }

@@ -39,26 +39,29 @@ namespace TargetOnline.Services.Settings
 
         public async Task<IOutcome<User>> UpdateAvatar(Microsoft.AspNetCore.Http.HttpRequest httpRequest)
         {
-            var file = httpRequest.Form.Files[0];
-            var hasImage = file != null;
-            var imageHeight = httpRequest.Form["imageHeight"][0];
-            var imageWidth = httpRequest.Form["imageWidth"][0];
-            var currentUserId = int.Parse(httpRequest.Form["createdByUserId"][0]);
-            var currentUser = _DbContext.Users.Single(u => u.Id == currentUserId);
-            var mimeType = file.ContentType;
-            var fileData = await FormFileExtensions.GetBytes(file);
-     
-            BlobStorageService objBlobService = new BlobStorageService(_configuration);
+            try
+            {
+                var file = httpRequest.Form.Files[0];
+                var hasImage = file != null;
+                var currentUserId = int.Parse(httpRequest.Form["createdByUserId"][0]);
+                var currentUser = _DbContext.Users.Single(u => u.Id == currentUserId);
+                var mimeType = file.ContentType;
+                var fileData = await FormFileExtensions.GetBytes(file);
 
-            currentUser.HasAvatar = true;
-            currentUser.ImageWidth = hasImage ? int.Parse(imageWidth) : 0;
-            currentUser.ImageHeight = hasImage ? int.Parse(imageHeight) : 0;
-            currentUser.AvatarURL = objBlobService.UploadFileToBlob(currentUser.PhoneNumber, fileData, mimeType);
+                BlobStorageService objBlobService = new BlobStorageService(_configuration);
 
-            _DbContext.Users.Update(currentUser);
-            _DbContext.SaveChanges();
+                currentUser.HasAvatar = true;
+                currentUser.AvatarURL = objBlobService.UploadFileToBlob(currentUser.PhoneNumber, fileData, mimeType);
 
-            return new Success<User>(currentUser);
+                _DbContext.Users.Update(currentUser);
+                _DbContext.SaveChanges();
+
+                return new Success<User>(currentUser);
+            }
+            catch (Exception ex)
+            {
+                return new Failure<User>(ex.Message);
+            }
         }
 
         public IOutcome<User> Update(User user)

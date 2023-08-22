@@ -76,9 +76,9 @@ namespace ServiceLayer
                     await cloudBlobContainer.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
                 }
 
-                if (fileName != null && fileData != null)
+                if (strFileName != null && fileData != null)
                 {
-                    CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(fileName);
+                    CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(strFileName);
                     cloudBlockBlob.Properties.ContentType = fileMimeType;
                     await cloudBlockBlob.UploadFromByteArrayAsync(fileData, 0, fileData.Length);
                     return cloudBlockBlob.Uri.AbsoluteUri;
