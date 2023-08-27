@@ -36,7 +36,7 @@ namespace TargetOnline
                 {
                     policy.AllowAnyHeader()
                         .AllowAnyMethod()
-                        .WithOrigins("https://www.targetonline.co.za", "http://localhost:3001", "http://localhost:5000", "http://localhost:5200", "http://localhost:3000", "https://aspnetclusters-77136-0.cloudclusters.net")
+                        .WithOrigins("https://www.targetonline.co.za", "http://www.targetonline.co.za", "https://targetonline-site.web.app", "https://targetonline.co.za", "http://localhost:3000", "https://aspnetclusters-77136-0.cloudclusters.net")
                         .AllowCredentials();
                 });
             });

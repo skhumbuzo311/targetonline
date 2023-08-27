@@ -1,6 +1,6 @@
 import './outsourcing.css'
 
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
@@ -14,8 +14,11 @@ const Outsourcing = (props) => {
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [profileMouseEntered, onProfileMouseEnter] = useState(false);
+
+  useEffect(() => document.getElementById('outsourcing-container').scrollIntoView(), [])
+
   return (
-    <div className="outsourcing-container">
+    <div className="outsourcing-container" id="outsourcing-container">
       <Helmet>
         <title>Outsourcing - Target Online Pty Ltd</title>
         <meta

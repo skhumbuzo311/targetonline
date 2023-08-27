@@ -1,6 +1,6 @@
 import './software-development.css'
 
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
@@ -14,8 +14,11 @@ const SoftwareDevelopment = (props) => {
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [profileMouseEntered, onProfileMouseEnter] = useState(false);
+
+  useEffect(() => document.getElementById('software-development-container').scrollIntoView(), [])
+
   return (
-    <div className="software-development-container">
+    <div className="software-development-container" id="software-development-container">
       <Helmet>
         <title>SoftwareDevelopment - Target Online Pty Ltd</title>
         <meta

@@ -1,6 +1,6 @@
 import './partnership.css'
 
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
@@ -13,8 +13,11 @@ const Partnership = (props) => {
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [profileMouseEntered, onProfileMouseEnter] = useState(false);
+
+  useEffect(() => document.getElementById('partnership-container').scrollIntoView(), [])
+
   return (
-    <div className="partnership-container">
+    <div className="partnership-container" id="partnership-container">
       <Helmet>
         <title>Partnership - Target Online Pty Ltd</title>
         <meta

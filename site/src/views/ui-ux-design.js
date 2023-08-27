@@ -1,6 +1,6 @@
 import './ui-ux-design.css'
 
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
@@ -14,8 +14,11 @@ const UIUXDesign = (props) => {
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [profileMouseEntered, onProfileMouseEnter] = useState(false);
+
+  useEffect(() => document.getElementById('uiu-design-container').scrollIntoView(), [])
+
   return (
-    <div className="uiu-design-container">
+    <div className="uiu-design-container" id="uiu-design-container">
       <Helmet>
         <title>UI-UX-Design - Target Online Pty Ltd</title>
         <meta

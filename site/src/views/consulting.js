@@ -1,6 +1,6 @@
 import './consulting.css'
 
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
@@ -15,8 +15,10 @@ const Consulting = (props) => {
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [profileMouseEntered, onProfileMouseEnter] = useState(false);
 
+  useEffect(() => document.getElementById('consulting-container').scrollIntoView(), [])
+
   return (
-    <div className="consulting-container">
+    <div className="consulting-container" id="consulting-container">
       <Helmet>
         <title>Consulting - Target Online Pty Ltd</title>
         <meta

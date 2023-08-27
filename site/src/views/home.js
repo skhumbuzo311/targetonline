@@ -1,6 +1,6 @@
 import './home.css'
 
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
@@ -16,8 +16,10 @@ const Home = (props) => {
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [profileMouseEntered, onProfileMouseEnter] = useState(false);
 
+  useEffect(() => document.getElementById('home-container').scrollIntoView(), [])
+
   return (
-    <div className="home-container">
+    <div className="home-container" id="home-container">
       <Helmet>
         <title>Target Online Pty Ltd</title>
         <meta property="og:title" content="Target Online Pty Ltd" />
@@ -100,10 +102,12 @@ const Home = (props) => {
                 <Link to="/partnership" className="home-text01 home-text">
                   Partnership
                 </Link>
-                <span onClick={() => {
+                <span className="home-text01 home-text" 
+                  onClick={() => {
                   setSideNavVisible(false)
                   setCloseBtnClicked(true)
                 }}>Home</span>
+                <span />
                 <Link to="/login" className="home-text01 home-text">
                   Logout
                 </Link>
