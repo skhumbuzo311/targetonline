@@ -24,7 +24,7 @@ namespace TargetOnline.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IOutcome<List<User>>> Get()
+        public ActionResult<IOutcome<List<Models.User>>> Get()
         {
             return _outcomeHandler.HandleOutcome(_usersService.Get()); ;
         }
@@ -36,13 +36,13 @@ namespace TargetOnline.Controllers
         }
 
         [HttpPatch]
-        public ActionResult<IOutcome<User>> Update(User user)
+        public ActionResult<IOutcome<Models.User>> Update(User user)
         {
             return _outcomeHandler.HandleOutcome(_usersService.Update(user)); ;
         }
 
         [HttpPut("update-avatar")]
-        public async Task<ActionResult<IOutcome<User>>> UpdateAvatar(IFormFile formFile)
+        public async Task<ActionResult<IOutcome<Models.User>>> UpdateAvatar(IFormFile formFile)
         {
             return _outcomeHandler.HandleOutcome(await _usersService.UpdateAvatar(Request)); ;
         }
@@ -57,6 +57,12 @@ namespace TargetOnline.Controllers
         public ActionResult<IOutcome<Models.User>> ResetPassword(Models.User user)
         {
             return _outcomeHandler.HandleOutcome(_usersService.ResetPassword(user)); ;
+        }
+
+        [HttpPut("update-location")]
+        public ActionResult<IOutcome<Models.User>> UpdateLocation(Models.User user)
+        {
+            return _outcomeHandler.HandleOutcome(_usersService.UpdateLocation(user)); ;
         }
     }
 }

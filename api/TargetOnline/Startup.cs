@@ -13,6 +13,9 @@ using TargetOnline.Models;
 using TargetOnline.Services.Emails;
 using Microsoft.EntityFrameworkCore;
 using TargetOnline.Context;
+using TargetOnline.Services.Products;
+using TargetOnline.Services;
+using TargetOnline.Services.Validations.CartValidations;
 
 namespace TargetOnline
 {
@@ -36,7 +39,7 @@ namespace TargetOnline
                 {
                     policy.AllowAnyHeader()
                         .AllowAnyMethod()
-                        .WithOrigins("https://www.targetonline.co.za", "http://www.targetonline.co.za", "https://targetonline-site.web.app", "https://targetonline.co.za", "http://localhost:3000", "https://aspnetclusters-77136-0.cloudclusters.net")
+                        .WithOrigins("https://ayoba-shop.web.app", "https://www.targetonline.co.za", "http://www.targetonline.co.za", "https://targetonline-site.web.app", "https://targetonline.co.za", "http://localhost:3000", "https://aspnetclusters-77136-0.cloudclusters.net")
                         .AllowCredentials();
                 });
             });
@@ -68,10 +71,14 @@ namespace TargetOnline
             services.AddScoped<IAuthenticationValidationService, AuthenticationValidationService>();
 
             services.AddScoped<IHandler, Handler>();
+            services.AddScoped<ICartService, CartService>();
             services.AddScoped<IUsersService, UsersService>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<INotificationsService, NotificationsService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<ICartValidationService, CartValidationService>();
+            services.AddScoped<IShopsService, ShopsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

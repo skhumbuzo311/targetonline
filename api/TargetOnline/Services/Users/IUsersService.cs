@@ -10,11 +10,12 @@ namespace TargetOnline.Services.Settings
 {
     public interface IUsersService
     {
-        IOutcome<List<User>> Get();
-        IOutcome<User> Update(User user);
+        IOutcome<List<Models.User>> Get();
+        IOutcome<Models.User> Update(User user);
         IOutcome<User> GetUser(string encryptedPassword);
         IOutcome<Models.User> ResetPassword(Models.User user);
-        Task<IOutcome<User>> UpdateAvatar(HttpRequest httpRequest);
+        Task<IOutcome<Models.User>> UpdateAvatar(HttpRequest httpRequest);
         IOutcome<Models.User> PasswordResetRequest(Models.User user);
+        IOutcome<Models.User> UpdateLocation(Models.User user);
     }
 }

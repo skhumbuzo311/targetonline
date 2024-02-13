@@ -12,7 +12,10 @@ namespace TargetOnline.Services.Converters
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 PhoneNumber = user.PhoneNumber,
-                Address = user.Address,
+                Location = new Models.Location()
+                {
+                    Description = user.Location.Description,
+                },
                 EmailAddress = user.EmailAddress,
                 Password = user.Password,
                 IsActive = user.IsActive,

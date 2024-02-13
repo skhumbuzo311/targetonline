@@ -17,7 +17,7 @@ const Login: FunctionComponent = () => {
   const [userLogin, setUserLogin] = useState<any>(null);
   const { currentUser } = useContext(CurrentUserContext);
 
-  currentUser.current = currentUser
+ // currentUser.current = currentUser
 
   const postLogin = useApi({
       action: () => authApi.postLogin(userLogin),

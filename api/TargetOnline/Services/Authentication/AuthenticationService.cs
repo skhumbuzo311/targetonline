@@ -7,6 +7,7 @@ using TargetOnline.Services.Validations.AuthenticationValidation;
 using TargetOnline.Services.Utils;
 using TargetOnline.Services.Converters;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 
 namespace TargetOnline.Services.Authentication
 {
@@ -54,7 +55,9 @@ namespace TargetOnline.Services.Authentication
 
         public IOutcome<Models.User> login(Models.User user)
         {
-            var dbUser = _smartAutoPartsDbContext.Users.FirstOrDefault(u => u.PhoneNumber.ToLower() == user.PhoneNumber.ToLower());
+            var dbUser = _smartAutoPartsDbContext.Users
+                .Include(ci => ci.Location)
+                .FirstOrDefault(u => u.PhoneNumber.ToLower() == user.PhoneNumber.ToLower());
 
             (bool canAction, string error) = _authenticationValidation.CanUserLogin(dbUser, user, _encryptionKey);
             if (!canAction)
