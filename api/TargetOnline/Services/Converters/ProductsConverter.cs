@@ -15,6 +15,8 @@ namespace TargetOnline.Services.Converters
                 Price = product.Price,
                 ImageURL = product.ImageURL,
                 Quantity = product.Quantity,
+                Shop = ShopsConverter.ConvertShopToModel(product.Shop),
+                CreatedByUser = AuthenticationConverter.ConvertUserToModel(product.CreatedByUser),
                 CreatedAt = product.CreatedAt
             };
         }

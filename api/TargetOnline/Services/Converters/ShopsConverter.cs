@@ -14,6 +14,8 @@ namespace TargetOnline.Services.Converters
                 RatePerKM = Shop.RatePerKM,
                 BankCode = Shop.BankCode,
                 BankName = Shop.BankName,
+                EmailAddress = Shop.EmailAddress,
+                ShopOwnerName = Shop.CreatedByUser.FirstName,
                 AccountNumber = Shop.AccountNumber,
                 SubAccountCode = Shop.SubAccountCode,
                 Location = new Models.Location()

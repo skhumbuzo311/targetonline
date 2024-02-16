@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Kasiline</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: #000000;
+        background-color: white;
+
+      }
+    </style>
+	<style>
+	.email-template-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.email-template-hero {
+  width: 100%;
+  display: flex;
+  padding: 48px;
+  min-height: 40vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(113.8deg, rgba(255, 76, 92, 0.8) 7.5%, rgba(255, 177, 70, 0.8) 94.47%),url('https://images.unsplash.com/photo-1582004531564-50f300aae039?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDl8fGVjb21tZXJjZXxlbnwwfHx8fDE3MDc3MzAyNjR8MA&ixlib=rb-4.0.3&w=1500');
+  background-position: top left,center;
+}
+.email-template-banner {
+  width: 100%;
+  display: flex;
+  padding: 48px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.email-template-features {
+  width: 100%;
+  display: flex;
+  padding: 48px;
+  max-width: 1400px;
+  align-items: center;
+  flex-direction: column;
+}
+.email-template-text {
+  color: #199033;
+  font-size: 3rem;
+  margin-bottom: 32px;
+}
+.email-template-text03 {
+  color: white;
+  width: 50%;
+  font-size: 1.15rem;
+  text-align: center;
+}
+.email-template-btn-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.email-template-link {
+  color: white;
+  transition: 0.3s;
+  padding-top: 16px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  text-decoration: none;
+  background-color: #000000;
+}
+.email-template-link:hover {
+  transform: scale(1.02);
+}
+.email-template-link01 {
+  transition: 0.3s;
+  margin-left: 16px;
+  padding-top: 16px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  text-decoration: none;
+  background-color: white
+}
+.email-template-link01:hover {
+  transform: scale(1.02);
+}
+.email-template-image {
+  width: 25%;
+  height: 25%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transition: 0.3s;
+}
+.email-template-image:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: 0.3s;
+}
+.email-template-details-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.email-template-section-header {
+  width: 100%;
+  margin: 50px;
+  display: flex;
+  padding: 20px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  align-items: center;
+  border-radius: 10px;
+  flex-direction: row;
+  justify-content: center;
+}
+.email-template-text04 {
+  color: #000000;
+  font-size: 2vw;
+}
+.email-template-details {
+  width: 70%;
+  display: flex;
+  padding: 50px;
+  transition: 0.3s;
+  align-items: center;
+  flex-direction: column;
+}
+.email-template-name {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-text05 {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.email-template-textinput {
+  width: 35%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: 0.3s;
+  border-width: 0px;
+}
+.email-template-textinput:hover {
+  cursor: pointer;
+}
+.email-template-description {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-text08 {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.email-template-textarea {
+  width: 35%;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-width: 0px;
+}
+.email-template-email-address {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-text11 {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.email-template-textinput1 {
+  width: 35%;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-width: 0px;
+}
+.email-template-location-address {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-text14 {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.email-template-textinput2 {
+  width: 35%;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-width: 0px;
+}
+.email-template-bank {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-text17 {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.email-template-text20 {
+  width: 35%;
+  height: 40px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.email-template-bank-account-number {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-text21 {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.email-template-textinput3 {
+  width: 35%;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: 0.3s;
+  border-width: 0px;
+}
+.email-template-textinput3:hover {
+  cursor: pointer;
+}
+.email-template-location {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-text24 {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.email-template-textinput4 {
+  width: 35%;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: 0.3s;
+  border-width: 0px;
+}
+.email-template-textinput4:hover {
+  cursor: pointer;
+}
+.email-template-footer {
+  width: 100%;
+  display: flex;
+  position: relative;
+  max-width: 1400px;
+  align-items: center;
+  padding-top: 32px;
+  padding-left: 48px;
+  padding-right: 48px;
+  flex-direction: column;
+  padding-bottom: 32px;
+  justify-content: space-between;
+}
+.email-template-container1 {
+  display: flex;
+  max-width: 1400px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.email-template-link02 {
+  display: contents;
+}
+.email-template-image1 {
+  height: 2rem;
+  margin-bottom: 32px;
+  text-decoration: none;
+}
+.email-template-nav {
+  flex: 0 0 auto;
+  display: flex;
+  margin-top: 0px;
+  align-items: center;
+  flex-direction: row;
+}
+.email-template-link03 {
+  margin-left: 0px;
+  text-decoration: none;
+}
+.email-template-link04 {
+  margin-left: 16px;
+  text-decoration: none;
+}
+.email-template-link05 {
+  margin-left: 16px;
+  text-decoration: none;
+}
+.email-template-link06 {
+  margin-left: 16px;
+  text-decoration: none;
+}
+.email-template-link07 {
+  margin-left: 16px;
+  text-decoration: none;
+}
+.email-template-separator {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 0px;
+  display: flex;
+  margin-top: 32px;
+  align-items: flex-start;
+  margin-left: 0px;
+  border-color: #D9D9D9;
+  border-style: solid;
+  border-width: 1px;
+  margin-right: 0px;
+  margin-bottom: 32px;
+  flex-direction: row;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+.email-template-container2 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-icon-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.email-template-link08 {
+  display: contents;
+}
+.email-template-icon {
+  width: 16px;
+  height: XSmall;
+  text-decoration: none;
+}
+.email-template-link09 {
+  display: contents;
+}
+.email-template-icon2 {
+  width: 16px;
+  height: 16px;
+  margin-left: 32px;
+  text-decoration: none;
+}
+@media(max-width: 1200px) {
+  .email-template-text04 {
+    color: #000000;
+  }
+  .email-template-textinput {
+    width: 50%;
+  }
+  .email-template-textarea {
+    width: 50%;
+  }
+  .email-template-textinput1 {
+    width: 50%;
+  }
+  .email-template-textinput2 {
+    width: 50%;
+  }
+  .email-template-text20 {
+    width: 50%;
+  }
+  .email-template-textinput3 {
+    width: 50%;
+  }
+  .email-template-textinput4 {
+    width: 50%;
+  }
+}
+@media(max-width: 991px) {
+  .email-template-hero {
+    flex-direction: column;
+  }
+  .email-template-text {
+    text-align: center;
+  }
+  .email-template-text03 {
+    text-align: center;
+  }
+  .email-template-section-header {
+    margin: 25px;
+  }
+  .email-template-text04 {
+    text-align: center;
+  }
+  .email-template-text05 {
+    text-align: center;
+  }
+  .email-template-text08 {
+    text-align: center;
+  }
+  .email-template-text11 {
+    text-align: center;
+  }
+  .email-template-text14 {
+    text-align: center;
+  }
+  .email-template-text17 {
+    text-align: center;
+  }
+  .email-template-text21 {
+    text-align: center;
+  }
+  .email-template-text24 {
+    text-align: center;
+  }
+}
+@media(max-width: 767px) {
+  .email-template-hero {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .email-template-banner {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .email-template-features {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .email-template-text {
+    text-align: center;
+  }
+  .email-template-text04 {
+    font-size: 3vw;
+  }
+  .email-template-footer {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .email-template-image1 {
+    margin-bottom: 24px;
+  }
+  .email-template-separator {
+    margin-top: 24px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 24px;
+  }
+  .email-template-container2 {
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .email-template-text27 {
+    margin-bottom: 24px;
+  }
+}
+@media(max-width: 479px) {
+  .email-template-hero {
+    padding-top: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 32px;
+  }
+  .email-template-banner {
+    padding-top: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 32px;
+  }
+  .email-template-features {
+    padding-top: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 32px;
+  }
+  .email-template-text03 {
+    width: 100%;
+  }
+  .email-template-btn-group {
+    flex-direction: column;
+  }
+  .email-template-link01 {
+    margin-top: 16px;
+    margin-left: 0px;
+  }
+  .email-template-image {
+    width: 100%;
+    height: 10%;
+  }
+  .email-template-text04 {
+    font-size: 4vw;
+  }
+  .email-template-details {
+    padding: 30px;
+  }
+  .email-template-name {
+    flex-direction: column;
+  }
+  .email-template-text05 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .email-template-textinput {
+    width: 100%;
+  }
+  .email-template-description {
+    flex-direction: column;
+  }
+  .email-template-text08 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .email-template-textarea {
+    width: 100%;
+  }
+  .email-template-email-address {
+    flex-direction: column;
+  }
+  .email-template-text11 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .email-template-textinput1 {
+    width: 100%;
+  }
+  .email-template-location-address {
+    flex-direction: column;
+  }
+  .email-template-text14 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .email-template-textinput2 {
+    width: 100%;
+  }
+  .email-template-bank {
+    flex-direction: column;
+  }
+  .email-template-text17 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .email-template-text20 {
+    width: 100%;
+  }
+  .email-template-bank-account-number {
+    flex-direction: column;
+  }
+  .email-template-text21 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .email-template-textinput3 {
+    width: 100%;
+  }
+  .email-template-location {
+    flex-direction: column;
+  }
+  .email-template-text24 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .email-template-textinput4 {
+    width: 100%;
+  }
+  .email-template-footer {
+    padding: 16px;
+    padding-top: 16px;
+  }
+  .email-template-separator {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  .email-template-container2 {
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .email-template-text27 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+}
+
+
+	</style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/animate.css@4.1.1/animate.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="[logoURL]"
+      type="icon/png"
+      sizes="32x32"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+  </head>
+  <body>
+    <div>
+  <div class="email-template-container">
+    <div class="email-template-hero">
+      <div class="email-template-banner">
+        <div class="email-template-features">
+          <h1 class="email-template-text">
+            <span>Successful Registration</span>
+            <br />
+          </h1>
+          <span class="email-template-text03">
+            This is a confirmation email that you have successfully registered
+            your business with the details shown below
+          </span>
+        </div>
+        <div class="email-template-btn-group">
+          <a
+            href="[baseURL]"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link button"
+          >
+            Home
+          </a>
+          <a
+            href="[baseURL]/shop/[shopId]"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link01 button"
+          >
+            Shop
+          </a>
+        </div>
+      </div>
+      <img
+        alt="image"
+        src="[logoURL]"
+        class="email-template-image"
+      />
+    </div>
+    <div class="email-template-details-section">
+      <div class="email-template-section-header">
+        <h1 class="email-template-text04">Shop Details</h1>
+      </div>
+      <div class="email-template-details">
+        <div class="email-template-name">
+          <span class="email-template-text05">
+            <span>Name</span>
+            <br />
+          </span>
+          <input
+            type="text"
+            required="true"
+            disabled="true"
+            placeholder="Name"
+            value="[name]"
+            class="email-template-textinput input"
+          />
+        </div>
+        <div class="email-template-description">
+          <span class="email-template-text08">
+            <span>Description</span>
+            <br />
+          </span>
+          <textarea
+            rows="4"
+            disabled="true"
+            value="[description]"
+            placeholder="[description]"
+            class="email-template-textarea textarea"
+          ></textarea>
+        </div>
+        <div class="email-template-email-address">
+          <span class="email-template-text11">
+            <span>Email Address</span>
+            <br />
+          </span>
+          <input
+            type="text"
+            disabled="true"
+            required="true"
+            value="[emailAddress]"
+            placeholder="Email address"
+            class="email-template-textinput1 input"
+          />
+        </div>
+        <div class="email-template-location-address">
+          <span class="email-template-text14">
+            <span>Location Address</span>
+            <br />
+          </span>
+          <input
+            type="text"
+            disabled="true"
+            required="true"
+            value="[locationAddress]"
+            placeholder="Location address"
+            class="email-template-textinput2 input"
+          />
+        </div>
+        <div class="email-template-bank">
+          <span class="email-template-text17">
+            <span>Bank Name</span>
+            <br />
+          </span>
+          <span class="email-template-text20">Bank Name</span>
+        </div>
+        <div class="email-template-bank-account-number">
+          <span class="email-template-text21">
+            <span>Bank Account Number</span>
+            <br />
+          </span>
+          <input
+            type="number"
+            disabled="true"
+            value="[accountNumber]"
+            placeholder="Bank account number"
+            class="email-template-textinput3 input"
+          />
+        </div>
+        <div class="email-template-location">
+          <span class="email-template-text24">
+            <span>Delivery Rate Per KM</span>
+            <br />
+          </span>
+          <input
+            type="number"
+            disabled="true"
+            required="true"
+            value="[ratePerKM]"
+            placeholder="Rate per km"
+            class="email-template-textinput4 input"
+          />
+        </div>
+      </div>
+    </div>
+    <footer class="email-template-footer">
+      <div class="email-template-container1">
+        <a
+          href="[baseURL]"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="email-template-link02"
+        >
+          <img
+            alt="logo"
+            src="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/c78dfe50-253d-43d0-8680-5be33ab60ac7/06e4d147-7198-4e72-b212-95177cf8d80e?org_if_sml=1&force_format=original"
+            class="email-template-image1"
+          />
+        </a>
+        <nav class="email-template-nav">
+          <a
+            href="[baseURL]"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link03"
+          >
+            Home
+          </a>
+          <a
+            href="[baseURL]"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link04"
+          >
+            Shops
+          </a>
+          <a
+            href="[baseURL]"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link05"
+          >
+            Cart
+          </a>
+          <a
+            href="[baseURL]"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link06"
+          >
+            Orders
+          </a>
+          <a
+            href="[baseURL]"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link07"
+          >
+            Profile
+          </a>
+        </nav>
+      </div>
+      <div class="email-template-separator"></div>
+      <div class="email-template-container2">
+        <span class="email-template-text27">
+          © 2017 Target Online Pty Ltd, All Rights Reserved.
+        </span>
+        <div class="email-template-icon-group">
+          <a
+            href="https://api.whatsapp.com/send/?phone=27849128213"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link08"
+          >
+            <svg viewBox="0 0 1024 1024" class="email-template-icon">
+              <path
+                d="M873 148.8c-95.8-96-223.2-148.8-359-148.8-279.6 0-507.2 227.6-507.2 507.4 0 89.4 23.4 176.8 67.8 253.6l-72 263 269-70.6c74.2 40.4 157.6 61.8 242.4 61.8h0.2c0 0 0 0 0 0 279.6 0 507.4-227.6 507.4-507.4 0-135.6-52.8-263-148.6-359zM514.2 929.6v0c-75.8 0-150-20.4-214.8-58.8l-15.4-9.2-159.6 41.8 42.6-155.6-10-16c-42.4-67-64.6-144.6-64.6-224.4 0-232.6 189.2-421.8 422-421.8 112.6 0 218.6 44 298.2 123.6 79.6 79.8 123.4 185.6 123.4 298.4-0.2 232.8-189.4 422-421.8 422zM745.4 613.6c-12.6-6.4-75-37-86.6-41.2s-20-6.4-28.6 6.4c-8.4 12.6-32.8 41.2-40.2 49.8-7.4 8.4-14.8 9.6-27.4 3.2s-53.6-19.8-102-63c-37.6-33.6-63.2-75.2-70.6-87.8s-0.8-19.6 5.6-25.8c5.8-5.6 12.6-14.8 19-22.2s8.4-12.6 12.6-21.2c4.2-8.4 2.2-15.8-1-22.2s-28.6-68.8-39-94.2c-10.2-24.8-20.8-21.4-28.6-21.8-7.4-0.4-15.8-0.4-24.2-0.4s-22.2 3.2-33.8 15.8c-11.6 12.6-44.4 43.4-44.4 105.8s45.4 122.6 51.8 131.2c6.4 8.4 89.4 136.6 216.6 191.4 30.2 13 53.8 20.8 72.2 26.8 30.4 9.6 58 8.2 79.8 5 24.4-3.6 75-30.6 85.6-60.2s10.6-55 7.4-60.2c-3-5.6-11.4-8.8-24.2-15.2z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="https://www.facebook.com/people/Target-Online-Pty-Ltd/100064374471561/"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="email-template-link09"
+          >
+            <svg
+              viewBox="0 0 602.2582857142856 1024"
+              class="email-template-icon2"
+            >
+              <path
+                d="M548 6.857v150.857h-89.714c-70.286 0-83.429 33.714-83.429 82.286v108h167.429l-22.286 169.143h-145.143v433.714h-174.857v-433.714h-145.714v-169.143h145.714v-124.571c0-144.571 88.571-223.429 217.714-223.429 61.714 0 114.857 4.571 130.286 6.857z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+    <script
+      defer
+      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
+    ></script>
+  </body>
+</html>

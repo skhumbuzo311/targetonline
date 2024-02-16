@@ -107,14 +107,6 @@ namespace TargetOnline.Services.Settings
                 return new Failure<Models.User>(error);
             }
 
-            _emailService.SendEmail(new Models.EmailData
-            {
-                EmailSubject = "Password Reset Request",
-                EmailToName = dbUser.FirstName,
-                EmailToId = dbUser.EmailAddress,
-                EncryptedPassword = dbUser.Password.Replace("/", string.Empty).Replace("+", string.Empty),
-            });
-
             _DbContext.SaveChanges();
 
             return new Success<Models.User>(AuthenticationConverter.ConvertUserToModel(dbUser));

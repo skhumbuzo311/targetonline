@@ -17,6 +17,7 @@ namespace TargetOnline.Entities
         public string BankCode { get; set; }
         public string BankName { get; set; }
         public string AccountNumber { get; set; }
+        public string EmailAddress { get; set; }
         public string SubAccountCode { get; set; }
         public int LocationId { get; set; }
         public bool IsDeleted { get; set; }

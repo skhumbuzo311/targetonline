@@ -13,5 +13,8 @@ namespace TargetOnline.Models
         public string Description { get; set; }
         public string ImageURL { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        public Shop Shop { get; set; }
+        public User CreatedByUser { get; set; }
     }
 }

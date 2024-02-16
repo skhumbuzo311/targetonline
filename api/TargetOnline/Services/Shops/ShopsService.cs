@@ -4,30 +4,46 @@ using ServiceLayer;
 using TargetOnline.Outcomes.Results;
 using TargetOnline.Services.Utils;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Linq;
 using TargetOnline.Services.Converters;
 using Microsoft.EntityFrameworkCore;
+using IEmailService = TargetOnline.Services.Emails.IEmailService;
+using System.Collections.Generic;
 
 namespace TargetOnline.Services
 {
     public class ShopsService : IShopsService
     {
+        private string _baseURL = string.Empty;
         private readonly DatabaseContext _dbContext;
+        private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
-        public ShopsService(DatabaseContext dbContext, IConfiguration configuration)
+        public ShopsService(DatabaseContext dbContext, IConfiguration configuration, IEmailService emailService)
         {
             _dbContext = dbContext;
+            _emailService = emailService;
             _configuration = configuration;
+            _baseURL = configuration.GetSection(configuration.GetSection("Environment").Value)["BaseURL"];
+        }
+
+        public List<Shop> Get()
+        {
+            return _dbContext.Shops
+                    .Include(s => s.Location)
+                    .Include(s => s.CreatedByUser)
+                    .OrderByDescending(f => f.CreatedAt)
+                    .Select(s => ShopsConverter.ConvertShopToModel(s))
+                    .ToList();
         }
 
         public Shop Get(int shopId)
         {
             var dbShop = _dbContext.Shops
-                    .Include(ci => ci.Location)
+                    .Include(s => s.Location)
+                    .Include(s => s.CreatedByUser)
                     .OrderByDescending(f => f.CreatedAt)
                     .Single(s => s.Id == shopId);
 
@@ -55,6 +71,7 @@ namespace TargetOnline.Services
                     BankName = httpRequest.Form["bankName"].ToString(),
                     BankCode = httpRequest.Form["bankCode"].ToString(),
                     AccountNumber = httpRequest.Form["accountNumber"],
+                    EmailAddress = httpRequest.Form["emailAddress"],
                     CreatedByUserId = Convert.ToInt32(httpRequest.Form["currentUserId"]),
                     SubAccountCode = httpRequest.Form["subAccountCode"].ToString(),
                     Location = new Entities.Location()
@@ -70,7 +87,11 @@ namespace TargetOnline.Services
                 _dbContext.Add(shop);
                 _dbContext.SaveChanges();
 
-                return new Success<Shop>(ShopsConverter.ConvertShopToModel(shop));
+                var dbShop = Get(shop.Id);
+
+                _emailService.SendShopCreationConfirmation(dbShop, _baseURL);
+
+                return new Success<Shop>(dbShop);
             }
             catch (Exception ex)
             {

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TargetOnline.Outcomes.Results;
 using TargetOnline.Services;
+using System.Collections.Generic;
 
 namespace api.Controllers;
 
@@ -18,6 +19,13 @@ public class ShopsController : ControllerBase
     {
         _shopsService = shopsService;
         _handler = handler;
+    }
+
+
+    [HttpGet]
+    public List<Shop> Get()
+    {
+        return _shopsService.Get();
     }
 
     [HttpGet("shopId")]

@@ -9,7 +9,8 @@ namespace TargetOnline.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int RatePerKM { get; set; }
-        public int EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
+        public string ShopOwnerName { get; set; }
         public string BankCode { get; set; }
         public string BankName { get; set; }
         public string AccountNumber { get; set; }

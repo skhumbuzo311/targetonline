@@ -91,7 +91,23 @@ namespace TargetOnline.Context
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
+                entity.Property(e => e.ShopId).HasColumnName("ShopID");
+
+                entity.Property(e => e.CreatedByUserId).HasColumnName("CreatedByUserID");
+
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Shop)
+                    .WithMany()
+                    .HasForeignKey(d => d.ShopId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Product_Shop");
+
+                entity.HasOne(d => d.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(d => d.CreatedByUserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Product_CreatedByUser");
 
                 entity.HasQueryFilter(e => !e.IsDeleted);
             });
