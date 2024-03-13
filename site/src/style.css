@@ -347,3 +347,8 @@
     padding: 16px;
   }
 }
+
+.Toastify__toast-body > div:last-child {
+  text-align: center;
+ }
+ 

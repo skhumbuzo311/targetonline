@@ -15,14 +15,14 @@ import NotifyFailure from 'shared/utils/notify-failure';
 
 const Partner: FunctionComponent = () => {
   const navigate = useNavigate();
-  const { currentUser } = useContext(CurrentUserContext);
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [avatarMouseEntered, onAvatarMouseEnter] = useState(false);
   const [profileMouseEntered, onProfileMouseEnter] = useState(false);
+  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 
   useEffect(() => {
-    if (isNullOrEmpty(currentUser.current)) navigate('/login')
+    if (isNullOrEmpty(currentUser.id)) navigate('/login')
     else document.getElementById('partner-blog')!.scrollIntoView();
   }, [])
 
@@ -31,22 +31,23 @@ const Partner: FunctionComponent = () => {
       const formData = new FormData();
 
       formData.append('formFile', file)
-      formData.append('createdByUserId', currentUser.current.id)
-
+      formData.append('createdByUserId', currentUser.id)
 
       return settingsApi.updateAvatar(formData)
     },
     defer: true,
     onSuccess: (response: User) => {
-      currentUser.current = response;
+      setCurrentUser(response);
       localStorage.setItem('targetOnlineUser', JSON.stringify(response));
       toast.success('Avatar updated successfully');
     },
     onError: (error: any) => NotifyFailure(error.response, error.message)
   }, [])
 
+  useEffect(() => document.getElementById("partner-container")!.scrollIntoView(), [])
+
   return (
-    <div className="partner-container">
+    <div className="partner-container" id="partner-container">
       <Helmet>
         <title>Partner - Target Online Pty Ltd</title>
         <meta property="og:title" content="Partner - Target Online Pty Ltd" />
@@ -70,7 +71,7 @@ const Partner: FunctionComponent = () => {
               Consulting
             </Link>
           </nav>
-          {isNullOrEmpty(currentUser.current)
+          {isNullOrEmpty(currentUser)
             ? <div className="home-buttons">
               <Link to="/" className="home-navlink03">
                 <svg viewBox="0 0 1024 1024" className="home-icon">
@@ -96,7 +97,7 @@ const Partner: FunctionComponent = () => {
                   </svg>
                 </Link>
                 <Link title='Profile' to="/partner" className="home-navlink03">
-                  <span className="nav-text01">{currentUser.current.firstName}</span>
+                  <span className="nav-text01">{currentUser.firstName}</span>
                 </Link>
               </div>
             </span>
@@ -173,7 +174,7 @@ const Partner: FunctionComponent = () => {
           </a>
         </div>
       </div>
-      {!isNullOrEmpty(currentUser.current) && (
+      {!isNullOrEmpty(currentUser.id) && (
         <div className="partner-blog" id="partner-blog" >
           <div className="partner-container09">
             <div className="partner-blog-post-card">
@@ -184,7 +185,7 @@ const Partner: FunctionComponent = () => {
                   </div>
                   : <img
                     alt="avatar"
-                    src={isNullOrEmpty(currentUser.current.avatarURL) ? require(avatarMouseEntered ? "../assets/update-avatar.png" : "../assets/user.png") : currentUser.current.avatarURL + "?" + new Date().getTime()}
+                    src={isNullOrEmpty(currentUser.avatarURL) ? require(avatarMouseEntered ? "../assets/update-avatar.png" : "../assets/user.png") : currentUser.avatarURL + "?" + new Date().getTime()}
                     className="partner-image2"
                     onMouseEnter={() => onAvatarMouseEnter(true)}
                     onMouseLeave={() => onAvatarMouseEnter(false)}
@@ -202,9 +203,9 @@ const Partner: FunctionComponent = () => {
               <div className="partner-container10">
                 <div className="partner-container11">
                   <span className="partner-text12">Markting SPECIALIST</span>
-                  <span className="partner-text13">{currentUser.current.emailAddress}</span>
+                  <span className="partner-text13">{currentUser.emailAddress}</span>
                 </div>
-                <h1 className="partner-text14">{`${currentUser.current.firstName} ${currentUser.current.lastName}`}</h1>
+                <h1 className="partner-text14">{`${currentUser.firstName} ${currentUser.lastName}`}</h1>
                 <span className="partner-text15">
                   Hi I&apos;m the marking specialist I work with a team that
                   builds and maintain reliable applications that are affordable.
@@ -227,7 +228,7 @@ const Partner: FunctionComponent = () => {
           </div>
         </div>
       )}
-      {!isNullOrEmpty(currentUser.current) && (
+      {!isNullOrEmpty(currentUser.id) && (
         <div className="partner-stats">
           <div className="partner-stat">
             <svg viewBox="0 0 1152 1024" className="partner-icon04">
@@ -236,7 +237,7 @@ const Partner: FunctionComponent = () => {
             </svg>
             <span className="partner-text18">Customers</span>
             <span className="partner-text19">My Customers </span>
-            <h1 className="partner-text20">{currentUser.current.customers}</h1>
+            <h1 className="partner-text20">{currentUser.customers}</h1>
           </div>
           <div className="partner-stat1">
             <svg viewBox="0 0 1024 1024" className="partner-icon07">
@@ -244,7 +245,7 @@ const Partner: FunctionComponent = () => {
             </svg>
             <span className="partner-text21">Projects</span>
             <span className="partner-text22">Projects for my customers</span>
-            <h1 className="partner-text23">{currentUser.current.projects}</h1>
+            <h1 className="partner-text23">{currentUser.projects}</h1>
           </div>
           <div className="partner-stat2">
             <svg viewBox="0 0 1024 1024" className="partner-icon09">
@@ -254,7 +255,7 @@ const Partner: FunctionComponent = () => {
             <span className="partner-text25">
               What I&apos;m earning per  month
             </span>
-            <h1 className="partner-text26">R{currentUser.current.income}</h1>
+            <h1 className="partner-text26">R{currentUser.income}</h1>
           </div>
         </div>
       )}

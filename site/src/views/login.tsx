@@ -15,21 +15,23 @@ import NotifyFailure from 'shared/utils/notify-failure';
 const Login: FunctionComponent = () => {
   const navigate = useNavigate();
   const [userLogin, setUserLogin] = useState<any>(null);
-  const { currentUser } = useContext(CurrentUserContext);
-
- // currentUser.current = currentUser
+  const [, setCurrentUser] = useContext(CurrentUserContext);
 
   const postLogin = useApi({
       action: () => authApi.postLogin(userLogin),
       defer: true,
       onSuccess: async (response: User) => {
-        currentUser.current = response;
+        setCurrentUser(response)
+        
+        if(response.isPhoneNumberVerified)
+        {
+          toast.success(`Welcome ${response.firstName}`)
 
-        localStorage.setItem('targetOnlineUser', JSON.stringify(response));
+          localStorage.setItem('targetOnlineUser', JSON.stringify(response));
 
-        toast.success(`Welcome back ${response.firstName}`)
-
-        navigate('/partner');
+          navigate('/');
+        }
+        else navigate('/phone-number-verification');
       },
       onError: (error: any) => NotifyFailure(error.response, error.message)
   }, [])
@@ -78,7 +80,9 @@ const Login: FunctionComponent = () => {
               <Link to="/signup" className="login-text2">
                 Create account 
               </Link>
-              <span className="login-text3">Reset password </span>
+              <Link to="/password-reset" className="login-text3">
+                Reset password
+              </Link>
             </div>
             <div className="login-profile">
               <Link to="/" className="login-navlink">

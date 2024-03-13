@@ -15,19 +15,15 @@ import { CurrentUserContext } from 'store';
 const Signup: FunctionComponent = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>();
-  const { currentUser } = useContext(CurrentUserContext);
+  const [, setCurrentUser] = useContext(CurrentUserContext);
 
   const postSignup = useApi({
       action: () => authApi.postSignup(user),
       defer: true,
       onSuccess: (response: User) => {
-        currentUser.current = response;
-
-        localStorage.setItem('targetOnlineUser', JSON.stringify(response));
-
-        toast.success(`Welcome ${response.firstName}`) 
-
-        navigate('/partner') 
+        setCurrentUser(response);
+        console.log('postSignup-response', response)
+        navigate('/phone-number-verification') 
       },
       onError: (error: any) => NotifyFailure(error.response, error.message)
   }, [])

@@ -18,7 +18,9 @@ import Consulting from './views/consulting'
 import UIUXDesign from './views/ui-ux-design'
 import Outsourcing from './views/outsourcing'
 import Partnership from './views/partnership'
+import PasswordReset from './views/password-reset'
 import SoftwareDevelopment from './views/software-development'
+import PhoneNumberVerification from './views/phone-number-verification'
 
 
 const root = ReactDOM.createRoot(
@@ -34,7 +36,9 @@ const router = createBrowserRouter([
   { path: "/ui-ux-design", element: <UIUXDesign /> },
   { path: "/outsourcing", element: <Outsourcing /> },
   { path: "/partnership", element: <Partnership /> },
+  { path: "/password-reset", element: <PasswordReset /> },
   { path: "/software-development", element: <SoftwareDevelopment /> },
+  { path: "/phone-number-verification", element: <PhoneNumberVerification /> }
 ]);
 
 

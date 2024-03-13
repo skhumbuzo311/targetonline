@@ -10,7 +10,7 @@ import { CurrentUserContext } from 'store'
 import { isNullOrEmpty } from 'shared/utils/string';
 
 const SoftwareDevelopment = (props) => {
-  const { currentUser } = useContext(CurrentUserContext);
+  const [currentUser] = useContext(CurrentUserContext);
   const [isSideNavVisible, setSideNavVisible] = useState(false);
   const [isCloseBtnClicked, setCloseBtnClicked] = useState(false);
   const [profileMouseEntered, onProfileMouseEnter] = useState(false);
@@ -58,7 +58,7 @@ const SoftwareDevelopment = (props) => {
               Consulting
             </Link>
           </nav>
-          {isNullOrEmpty(currentUser.current)
+          {isNullOrEmpty(currentUser.id)
             ? <div className="home-buttons">
               <Link to="/" className="home-navlink03">
                 <svg viewBox="0 0 1024 1024" className="home-icon">
@@ -84,7 +84,7 @@ const SoftwareDevelopment = (props) => {
                   </svg>
                 </Link>
                 <Link title='Profile' to="/partner" className="home-navlink03">
-                  <span className="nav-text01">{currentUser.current.firstName}</span>
+                  <span className="nav-text01">{currentUser.firstName}</span>
                 </Link>
               </div>
             </span>

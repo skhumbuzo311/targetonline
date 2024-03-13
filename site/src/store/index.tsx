@@ -1,14 +1,18 @@
-import { createContext, useRef } from 'react';
+import React, { createContext, useEffect } from 'react';
 
 export const CurrentUserContext = createContext<any>({})
 
 export default function Store(props: any) {
-	const localStorageUser : string | null = localStorage.getItem('targetOnlineUser');
+	const [currentUser, setCurrentUser] = React.useState({});
 
-	const currentUser = useRef<any>(localStorageUser == null ?  null : JSON.parse(localStorage.getItem('targetOnlineUser')!));
+	useEffect(() => {
+		const localStorageUser = localStorage.getItem('targetOnlineUser')
+
+		if (localStorageUser != null) setCurrentUser(JSON.parse(localStorageUser))
+	}, [])
 
 	return (
-		<CurrentUserContext.Provider value={{ currentUser }}>
+		<CurrentUserContext.Provider value={[currentUser, setCurrentUser]}>
 			{props.children}
 		</CurrentUserContext.Provider>
 	);
