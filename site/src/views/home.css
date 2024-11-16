@@ -1605,4 +1605,26 @@
     margin-bottom: var(--dl-space-space-oneandhalfunits);
   }
 }
-
+.navbar-interactive-buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.navbar-interactive-login-register {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.navbar-interactive-login {
+  border-width: 0;
+  margin-right: var(--dl-space-space-twounits);
+  text-decoration: none;
+}
+.navbar-interactive-register {
+  text-decoration: none;
+}
+.navbar-interactive-navlink4 {
+  display: contents;
+}

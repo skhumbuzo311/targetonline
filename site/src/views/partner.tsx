@@ -167,7 +167,7 @@ const Partner: FunctionComponent = () => {
             <br></br>
           </span>
           <a
-            href="mailto:info@targetonline.co.za?subject=Potential Customer"
+            href="https://wa.me/27849128213"
             className="partner-primary button-primary button-lg button"
           >
             Get in touch with us
@@ -202,12 +202,12 @@ const Partner: FunctionComponent = () => {
               />
               <div className="partner-container10">
                 <div className="partner-container11">
-                  <span className="partner-text12">Markting SPECIALIST</span>
+                  <span className="partner-text12">Business Partner</span>
                   <span className="partner-text13">{currentUser.emailAddress}</span>
                 </div>
                 <h1 className="partner-text14">{`${currentUser.firstName} ${currentUser.lastName}`}</h1>
                 <span className="partner-text15">
-                  Hi I&apos;m the marking specialist I work with a team that
+                  Hi I&apos;m a business partner for an IT organization I work with a team that
                   builds and maintain reliable applications that are affordable.
                   If you have an idea that speaks to the needs of the society get
                   in contact so we can bring your idea to life.

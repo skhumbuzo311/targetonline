@@ -1,6 +1,6 @@
 import './home.css'
 
-import { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
@@ -43,13 +43,14 @@ const Home = (props) => {
               </Link>
             </nav>
             {isNullOrEmpty(currentUser.id)
-              ? <div className="home-buttons">
-                <Link to="/" className="home-navlink03">
-                  <svg viewBox="0 0 1024 1024" className="home-icon">
-                    <path d="M426 854h-212v-342h-128l426-384 426 384h-128v342h-212v-256h-172v256z"></path>
-                  </svg>
-                </Link>
-              </div>
+              ? <div className="navbar-interactive-login-register" style={{ display: isNullOrEmpty(currentUser.id) ? "flex" : "none" }}>
+                  <Link to="/login" className="navbar-interactive-login button">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="navbar-interactive-register button">
+                    Register
+                  </Link>
+                 </div>
               : <span className="home-navlink03">
                 <div className="nav-profile">
                   <Link title='Logout' to="/login" className="home-navlink03">
@@ -102,11 +103,11 @@ const Home = (props) => {
                 <Link to="/partnership" className="home-text01 home-text">
                   Partnership
                 </Link>
-                <span className="home-text01 home-text" 
+                <span className="home-text01 home-text"
                   onClick={() => {
-                  setSideNavVisible(false)
-                  setCloseBtnClicked(true)
-                }}>Home</span>
+                    setSideNavVisible(false)
+                    setCloseBtnClicked(true)
+                  }}>Home</span>
                 <span />
                 <Link to="/login" className="home-text01 home-text">
                   Logout
@@ -144,7 +145,7 @@ const Home = (props) => {
               <br></br>
             </span>
             <a
-              href="mailto:info@targetonline.co.za?subject=Potential Customer"
+              href="https://wa.me/27849128213"
               className="home-primary button-primary button-lg button"
             >
               Get in touch with us
@@ -473,7 +474,7 @@ const Home = (props) => {
               Lean more
             </Link>
             <Link to="/partner" className="home-primary1 button-lg button-secondary-white button" >
-              Register
+              {isNullOrEmpty(currentUser.id) ? 'Register' : currentUser.firstName}
             </Link>
           </div>
         </div>
